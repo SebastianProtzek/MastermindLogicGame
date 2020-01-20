@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#131313</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="textColor">#FFF</color>
+
+    <color name="start_button">#053A66</color>
+    <color name="gold">#AA980E</color>
+    <color name="option_button">#A50707</color>
+    <color name="high_scores_button">#1B5505</color>
+    <color name="credits_button">#BB340E</color>
+    <color name="quit_button">#3A0F91</color>
+
+    <color name="margin_color">#1F1F1F</color>
+</resources>

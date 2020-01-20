@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/textColor</item>
+
+    </style>
+<!--    <style name="QuitDialog" parent="@android:style/Theme.Dialog">-->
+<!--        <item name="android:windowTitleStyle">@style/AlertDialogTitle</item>-->
+<!--        <item name="android:actionButtonStyle">@style/AlertDialogButtons</item>-->
+<!--    </style>-->
+
+<!--    <style name="AlertDialogTitle" parent="@android:style/TextAppearance.DialogWindowTitle">-->
+<!--        <item name="android:gravity">center_horizontal</item>-->
+<!--    </style>-->
+
+<!--    <style name="AlertDialogButtons" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">-->
+<!--        <item name="android:background">@color/colorPrimaryDark</item>-->
+<!--    </style>-->
+
+</resources>
