@@ -16,6 +16,7 @@ import protzek.sebastian.mastermindlogicgame.Listeners.BallTouchListener;
 import protzek.sebastian.mastermindlogicgame.Listeners.DragListenerDataCatcher;
 import protzek.sebastian.mastermindlogicgame.Math.Comparator;
 import protzek.sebastian.mastermindlogicgame.Math.NumbersGenerator;
+import protzek.sebastian.mastermindlogicgame.Math.WonOrNot;
 
 public class GameBoardActivity extends AppCompatActivity {
     @Override
@@ -35,11 +36,10 @@ public class GameBoardActivity extends AppCompatActivity {
     }
 
     private void letsPlay(ArrayList<SingleTurn> game) {
-        nextTurn(game);
-
         NumbersGenerator ng = new NumbersGenerator();
         Comparator com = new Comparator();
         DragListenerDataCatcher dlh = new DragListenerDataCatcher();
+        WonOrNot won = new WonOrNot();
 
 
         List<Integer> masterNumbers = ng.getMasterNumbers();
@@ -47,11 +47,20 @@ public class GameBoardActivity extends AppCompatActivity {
         boolean didPlayerWon;
 
         do {
+            nextTurn(game);
             turnsLeft--;
             ArrayList<Integer> playerGuess = dlh.getPlayerNumbers();
             List<Integer> guessResult = com.compareNumbers(masterNumbers, playerGuess);
             //change 4 view according to results
 
+            didPlayerWon = won.checkIfWon(guessResult);
+            if (didPlayerWon) {
+                //Alert YOU WON
+            }
+            ng.setDefaultNumbers();
+        } while (turnsLeft > 0 && !didPlayerWon);
+        if (!didPlayerWon) {
+            //Alert YOU LOST - Back to menu / restart
         }
     }
 
