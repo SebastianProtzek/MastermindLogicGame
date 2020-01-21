@@ -77,11 +77,11 @@
         android:textColor="@color/gold"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/turns_button"
+        app:layout_constraintEnd_toStartOf="@id/turns_text_view"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/turns_button"
+        android:id="@+id/turns_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
@@ -104,5 +104,5 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/turns_button" />
+        app:layout_constraintStart_toEndOf="@+id/turns_text_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

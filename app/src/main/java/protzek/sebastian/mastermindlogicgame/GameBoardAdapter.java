@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import protzek.sebastian.mastermindlogicgame.Listeners.BallDragListener;
+
 public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.GameBoardViewHolder> {
     private ArrayList<SingleTurn> gameTurns;
 
@@ -31,6 +33,10 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
         holder.imageViewSecondBall.setImageResource(currentTurn.getSecondBall());
         holder.imageViewThirdBall.setImageResource(currentTurn.getThirdBall());
         holder.imageViewFourthBall.setImageResource(currentTurn.getFourthBall());
+        holder.imageViewFirstBall.setOnDragListener(new BallDragListener());
+        holder.imageViewSecondBall.setOnDragListener(new BallDragListener());
+        holder.imageViewThirdBall.setOnDragListener(new BallDragListener());
+        holder.imageViewFourthBall.setOnDragListener(new BallDragListener());
     }
 
     @Override

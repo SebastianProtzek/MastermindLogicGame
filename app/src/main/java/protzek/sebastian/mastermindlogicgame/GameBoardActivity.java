@@ -10,8 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import protzek.sebastian.mastermindlogicgame.Listeners.BallTouchListener;
+import protzek.sebastian.mastermindlogicgame.Listeners.DragListenerDataCatcher;
+import protzek.sebastian.mastermindlogicgame.Math.Comparator;
+import protzek.sebastian.mastermindlogicgame.Math.NumbersGenerator;
 
 public class GameBoardActivity extends AppCompatActivity {
     @Override
@@ -27,9 +31,28 @@ public class GameBoardActivity extends AppCompatActivity {
         ArrayList<SingleTurn> game = new ArrayList<>();
         final GameBoardAdapter adapter = new GameBoardAdapter(game);
         recyclerView.setAdapter(adapter);
+        letsPlay(game);
+    }
+
+    private void letsPlay(ArrayList<SingleTurn> game) {
         nextTurn(game);
 
+        NumbersGenerator ng = new NumbersGenerator();
+        Comparator com = new Comparator();
+        DragListenerDataCatcher dlh = new DragListenerDataCatcher();
 
+
+        List<Integer> masterNumbers = ng.getMasterNumbers();
+        int turnsLeft = ng.getNumberOfTurns();
+        boolean didPlayerWon;
+
+        do {
+            turnsLeft--;
+            ArrayList<Integer> playerGuess = dlh.getPlayerNumbers();
+            List<Integer> guessResult = com.compareNumbers(masterNumbers, playerGuess);
+            //change 4 view according to results
+
+        }
     }
 
     private void nextTurn(ArrayList<SingleTurn> list) {
@@ -45,7 +68,6 @@ public class GameBoardActivity extends AppCompatActivity {
                 R.drawable.empty_circle_golden);
         return nextTurn;
     }
-
 
     @SuppressLint("ClickableViewAccessibility")
     private void invokeAllBallViewsAndTouchListeners() {
