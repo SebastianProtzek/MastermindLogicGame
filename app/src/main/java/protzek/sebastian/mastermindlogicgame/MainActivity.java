@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import protzek.sebastian.mastermindlogicgame.DialogFragments.QuitGameInfoDialogFragment;
+
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
 
     @Override

@@ -11,12 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import protzek.sebastian.mastermindlogicgame.Listeners.BallDragListener;
+import protzek.sebastian.mastermindlogicgame.Listeners.DragListenerDataCatcher;
 
 public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.GameBoardViewHolder> {
-    private ArrayList<SingleTurn> gameTurns;
+    private ArrayList<SingleTurn> game;
+    private DragListenerDataCatcher dldc;
+    private int indexOfActiveTurn;
 
-    public GameBoardAdapter(ArrayList<SingleTurn> gameTurns) {
-        this.gameTurns = gameTurns;
+    GameBoardAdapter(ArrayList<SingleTurn> game, DragListenerDataCatcher dldc, int indexOfActiveTurn) {
+        this.game = game;
+        this.dldc = dldc;
+        this.indexOfActiveTurn = indexOfActiveTurn;
     }
 
     @NonNull
@@ -28,20 +33,26 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
 
     @Override
     public void onBindViewHolder(@NonNull GameBoardViewHolder holder, int position) {
-        SingleTurn currentTurn = gameTurns.get(position);
-        holder.imageViewFirstBall.setImageResource(currentTurn.getFirstBall());
-        holder.imageViewSecondBall.setImageResource(currentTurn.getSecondBall());
-        holder.imageViewThirdBall.setImageResource(currentTurn.getThirdBall());
-        holder.imageViewFourthBall.setImageResource(currentTurn.getFourthBall());
-        holder.imageViewFirstBall.setOnDragListener(new BallDragListener());
-        holder.imageViewSecondBall.setOnDragListener(new BallDragListener());
-        holder.imageViewThirdBall.setOnDragListener(new BallDragListener());
-        holder.imageViewFourthBall.setOnDragListener(new BallDragListener());
+        SingleTurn singleTurn = game.get(position);
+        BallDragListener bdl = new BallDragListener(indexOfActiveTurn, position, dldc, singleTurn);
+        holder.imageViewFirstBall.setImageResource(singleTurn.getFirstBall());
+        holder.imageViewSecondBall.setImageResource(singleTurn.getSecondBall());
+        holder.imageViewThirdBall.setImageResource(singleTurn.getThirdBall());
+        holder.imageViewFourthBall.setImageResource(singleTurn.getFourthBall());
+        holder.imageViewFirstScorePin.setImageResource(singleTurn.getFirstScorePin());
+        holder.imageViewSecondScorePin.setImageResource(singleTurn.getSecondScorePin());
+        holder.imageViewThirdScorePin.setImageResource(singleTurn.getThirdScorePin());
+        holder.imageViewFourthScorePin.setImageResource(singleTurn.getFourthScorePin());
+        holder.imageViewFirstBall.setOnDragListener(bdl);
+        holder.imageViewSecondBall.setOnDragListener(bdl);
+        holder.imageViewThirdBall.setOnDragListener(bdl);
+        holder.imageViewFourthBall.setOnDragListener(bdl);
+//        holder.imageViewSecondBall.removeOnLayoutChangeListener(bdl);
     }
 
     @Override
     public int getItemCount() {
-        return gameTurns.size();
+        return game.size();
     }
 
     class GameBoardViewHolder extends RecyclerView.ViewHolder {
@@ -49,13 +60,25 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
         private ImageView imageViewSecondBall;
         private ImageView imageViewThirdBall;
         private ImageView imageViewFourthBall;
+        private ImageView imageViewFirstScorePin;
+        private ImageView imageViewSecondScorePin;
+        private ImageView imageViewThirdScorePin;
+        private ImageView imageViewFourthScorePin;
 
-        public GameBoardViewHolder(@NonNull View itemView) {
+        GameBoardViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewFirstBall = itemView.findViewById(R.id.firstBall);
-            imageViewSecondBall = itemView.findViewById(R.id.secondBall);
-            imageViewThirdBall = itemView.findViewById(R.id.thirdBall);
-            imageViewFourthBall = itemView.findViewById(R.id.fourthBall);
+            imageViewFirstBall = itemView.findViewById(R.id.firstEmptySlot);
+            imageViewSecondBall = itemView.findViewById(R.id.secondEmptySlot);
+            imageViewThirdBall = itemView.findViewById(R.id.thirdEmptySlot);
+            imageViewFourthBall = itemView.findViewById(R.id.fourthEmptySlot);
+            imageViewFirstScorePin = itemView.findViewById(R.id.firstScorePin);
+            imageViewSecondScorePin = itemView.findViewById(R.id.secondScorePin);
+            imageViewThirdScorePin = itemView.findViewById(R.id.thirdScorePin);
+            imageViewFourthScorePin = itemView.findViewById(R.id.fourthScorePin);
         }
+    }
+
+    void setIndexOfActiveTurn(int indexOfActiveTurn) {
+        this.indexOfActiveTurn = indexOfActiveTurn;
     }
 }

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Mastermind Logic Game</string>
+    <string name="empty_slot_description">an empty slot of a single turn where you can drag a chosen ball</string>
+    <string name="score_pin_description">one of the four score pins where the result of the turn will be displayed</string>
+    <string name="ball_description">a ball to be dragged and dropped over an empty slot</string>
+    <string name="exit">Exit</string>
+    <string name="turns_left">TURNS  LEFT: %1$d</string>
+    <string name="start">Start</string>
+    <string name="end_turn">END TURN</string>
+    <string name="restart">Restart</string>
 </resources>

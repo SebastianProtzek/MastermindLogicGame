@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame;
+package protzek.sebastian.mastermindlogicgame.DialogFragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class QuitGameInfoDialogFragment extends AppCompatDialogFragment {
+public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
 
     private DialogInterface.OnClickListener mListener;
 
@@ -18,9 +18,10 @@ public class QuitGameInfoDialogFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        builder.setTitle(("Wanna quit already?"))
-                .setPositiveButton(("Quit"), mListener)
-                .setNegativeButton(("Cancel"), mListener);
+        builder.setTitle("Go back to main menu?")
+                .setMessage("Progres won't be saved")
+                .setPositiveButton("Main menu", mListener)
+                .setNegativeButton("Cancel", mListener);
         return builder.create();
     }
 

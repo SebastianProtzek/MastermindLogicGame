@@ -21,7 +21,7 @@ public class NumbersGenerator {
         return r.nextInt(6) + 1;
     }
 
-    public void setDefaultNumbers() {
+    public void resetDefaultNumbers() {
         masterNumbers.set(0, firstNumber);
         masterNumbers.set(1, secondNumber);
         masterNumbers.set(2, thirdNumber);

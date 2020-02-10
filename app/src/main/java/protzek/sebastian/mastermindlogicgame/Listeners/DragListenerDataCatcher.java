@@ -1,66 +1,75 @@
 package protzek.sebastian.mastermindlogicgame.Listeners;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
+import protzek.sebastian.mastermindlogicgame.Enums.Ball;
+import protzek.sebastian.mastermindlogicgame.Enums.EmptySlot;
 import protzek.sebastian.mastermindlogicgame.R;
+import protzek.sebastian.mastermindlogicgame.SingleTurn;
 
 public class DragListenerDataCatcher {
 
     private ArrayList<Integer> playerNumbers = new ArrayList<>();
-    private int numberOfBallColor = 0;
 
-    void actionDrop(ImageView img, View draggedView, View subjectView, TextView textView) {
-        if (draggedView.getId() == R.id.blue_ball) {
-            img.setImageResource(R.drawable.ball_blue);
-            setNumberOfBallColor(1);
-        } else if (draggedView.getId() == R.id.yellow_ball) {
-            img.setImageResource(R.drawable.ball_yellow);
-            setNumberOfBallColor(2);
-        } else if (draggedView.getId() == R.id.red_ball) {
-            img.setImageResource(R.drawable.ball_red);
-            setNumberOfBallColor(3);
-        } else if (draggedView.getId() == R.id.green_ball) {
-            img.setImageResource(R.drawable.ball_green);
-            setNumberOfBallColor(4);
-        } else if (draggedView.getId() == R.id.orange_ball) {
-            img.setImageResource(R.drawable.ball_orange);
-            setNumberOfBallColor(5);
-        } else if (draggedView.getId() == R.id.white_ball) {
-            img.setImageResource(R.drawable.ball_white);
-            setNumberOfBallColor(6);
+    void actionDrop(View draggedView, View dropView, ImageView img, SingleTurn singleTurn) {
+
+        Ball ball = Ball.fromId(draggedView.getId());
+        int draggedBall = Objects.requireNonNull(ball).getImageResource();
+        int numberOfBallColor = ball.getBallNumber();
+        img.setImageResource(draggedBall);
+        EmptySlot emptySlot = EmptySlot.fromId(dropView.getId());
+        playerNumbers.set(Objects.requireNonNull(emptySlot).getIndex(), numberOfBallColor);
+
+        switch (emptySlot.getIndex()) {
+            case 0:
+                singleTurn.setFirstBall(draggedBall);
+                break;
+            case 1:
+                singleTurn.setSecondBall(draggedBall);
+                break;
+            case 2:
+                singleTurn.setThirdBall(draggedBall);
+                break;
+            case 3:
+                singleTurn.setFourthBall(draggedBall);
+                break;
         }
 
-        if (subjectView.getId() == R.id.firstBall) {
-            textView.setText("hah");
-            playerNumbers.set(0, numberOfBallColor);
-        } else if (subjectView.getId() == R.id.secondBall) {
-            textView.setText("drugi!");
-            playerNumbers.set(1, numberOfBallColor);
-        } else if (subjectView.getId() == R.id.thirdBall) {
-            textView.setText("czeci!");
-            playerNumbers.set(2, numberOfBallColor);
-        } else if (subjectView.getId() == R.id.fourthBall) {
-            textView.setText("wow!");
-            playerNumbers.set(3, numberOfBallColor);
-        }
-    }
-
-    public void setNumberOfBallColor(int numberOfBallColor) {
-        this.numberOfBallColor = numberOfBallColor;
-    }
-
-    public ArrayList<Integer> getPlayerNumbers() {
-        return playerNumbers;
+        // WE NEED TO SET EMPTYSLOTS OF SINGLE TURN OF GAME ACCORDING TO CURRENT TURN
     }
 
     void addEmptySlots() {
         if(playerNumbers.size() == 0)
             for (int i = 0; i < 4; i++) {
             playerNumbers.add(0);
+        }
+    }
+
+    void checkIfEndTurnPossible(Button endTurnButton) {
+        if (playerNumbers.get(0) != 0
+                && playerNumbers.get(1) != 0
+                && playerNumbers.get(2) != 0
+                && playerNumbers.get(3)!= 0) {
+            endTurnButton.setText(R.string.end_turn);
+            int color = ContextCompat.getColor(endTurnButton.getContext(), R.color.start_button);
+            endTurnButton.setTextColor(color);
+        }
+    }
+
+    public ArrayList<Integer> getPlayerNumbers() {
+        return playerNumbers;
+    }
+
+    public void resetPlayerNumbers() {
+        for (int i = 0; i < 4; i++) {
+            playerNumbers.set(i, 0);
         }
     }
 }
