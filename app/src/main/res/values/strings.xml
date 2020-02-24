@@ -4,8 +4,24 @@
     <string name="score_pin_description">one of the four score pins where the result of the turn will be displayed</string>
     <string name="ball_description">a ball to be dragged and dropped over an empty slot</string>
     <string name="exit">Exit</string>
-    <string name="turns_left">TURNS  LEFT: %1$d</string>
+    <string name="turns_left">TURNS  \nLEFT: %1$d</string>
     <string name="start">Start</string>
     <string name="end_turn">END TURN</string>
     <string name="restart">Restart</string>
+    <string name="creator">Game created by Sebastian Protzek</string>
+    <string name="check_code"><u>Click here to check the code</u></string>
+    <string name="have_fun">I hope you will have fun!</string>
+    <string name="turns_key">Klucz</string>
+    <string name="you_lost">YOU LOST!</string>
+    <string name="the_correct_set_was">The correct set was:</string>
+    <string name="number_of_turns">Number of turns:</string>
+    <string name="language">Language:</string>
+    <string name="flag_description">click_flag_to_change_language</string>
+    <string name="volume_icon">volume icon</string>
+    <string name="go_back_to_main_menu">go back  to main menu</string>
+    <string name="how_to_play">How to play</string>
+    <string name="options">Options</string>
+    <string name="high_scores">High Scores</string>
+    <string name="credits">Credits</string>
+    <string name="quit">Quit</string>
 </resources>

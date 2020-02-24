@@ -4,6 +4,7 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 
 import protzek.sebastian.mastermindlogicgame.R;
 import protzek.sebastian.mastermindlogicgame.SingleTurn;
@@ -27,6 +28,7 @@ public class BallDragListener implements View.OnDragListener {
             int action = event.getAction();
             final View draggedView = (View) event.getLocalState();
             Button restartEndTurnButton = dropView.getRootView().findViewById(R.id.restart_end_turn_button);
+            ScrollView scrollView = dropView.getRootView().findViewById(R.id.scroll_view);
             ImageView img = dropView.findViewById(dropView.getId());
             dldc.addEmptySlots();
 
@@ -39,6 +41,7 @@ public class BallDragListener implements View.OnDragListener {
                 case DragEvent.ACTION_DROP:
                     dldc.actionDrop(draggedView, dropView, img, singleTurn);
                     dldc.checkIfEndTurnPossible(restartEndTurnButton);
+                    scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                     break;
             }
         }

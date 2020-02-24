@@ -32,45 +32,51 @@
         app:layout_constraintBottom_toTopOf="@id/buttons_linear_layout">
 
         <ImageView
-            android:id="@+id/blue_ball"
-            android:layout_width="69dp"
+            android:id="@+id/blue_ball_image_view"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:src="@drawable/ball_blue"
             android:contentDescription="@string/ball_description" />
 
         <ImageView
-            android:id="@+id/yellow_ball"
-            android:layout_width="69dp"
+            android:id="@+id/yellow_ball_image_view"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:src="@drawable/ball_yellow"
             android:contentDescription="@string/ball_description" />
 
         <ImageView
-            android:id="@+id/red_ball"
-            android:layout_width="69dp"
+            android:id="@+id/white_ball_image_view"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_red"
+            android:src="@drawable/ball_white"
             android:contentDescription="@string/ball_description" />
 
         <ImageView
-            android:id="@+id/green_ball"
-            android:layout_width="69dp"
+            android:id="@+id/green_ball_image_view"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:src="@drawable/ball_green"
             android:contentDescription="@string/ball_description" />
 
         <ImageView
-            android:id="@+id/orange_ball"
-            android:layout_width="69dp"
+            android:id="@+id/orange_ball_image_view"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:src="@drawable/ball_orange"
             android:contentDescription="@string/ball_description" />
 
         <ImageView
-            android:id="@+id/white_ball"
-            android:layout_width="69dp"
+            android:id="@+id/red_ball_image_view"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_white"
+            android:src="@drawable/ball_red"
             android:contentDescription="@string/ball_description" />
     </LinearLayout>
 
@@ -111,7 +117,7 @@
             android:background="@color/colorPrimaryDark"
             android:text="@string/start"
             android:textColor="@color/gold"
-            android:onClick="restartOrEndTurn"
+            android:onClick="reStartOrEndTurn"
             android:textSize="24sp" />
     </LinearLayout>
 

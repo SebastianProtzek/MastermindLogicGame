@@ -2,7 +2,6 @@ package protzek.sebastian.mastermindlogicgame.Math;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class NumbersGenerator {
@@ -11,9 +10,7 @@ public class NumbersGenerator {
     private final int thirdNumber = generateNumber();
     private final int fourthNumber = generateNumber();
 
-    private int numberOfTurns = 10;
-
-    private List<Integer> masterNumbers = new ArrayList<>(Arrays.asList(firstNumber, secondNumber, thirdNumber,
+    private ArrayList<Integer> masterNumbers = new ArrayList<>(Arrays.asList(firstNumber, secondNumber, thirdNumber,
             fourthNumber));
 
     private int generateNumber() {
@@ -28,15 +25,7 @@ public class NumbersGenerator {
         masterNumbers.set(3, fourthNumber);
     }
 
-    public int getNumberOfTurns() {
-        return numberOfTurns;
-    }
-
-    public void setNumberOfTurns(int numberOfTurns) {
-        this.numberOfTurns = numberOfTurns;
-    }
-
-    public List<Integer> getMasterNumbers() {
+    public ArrayList<Integer> getMasterNumbers() {
         return masterNumbers;
     }
 }

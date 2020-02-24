@@ -2,25 +2,29 @@ package protzek.sebastian.mastermindlogicgame;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import protzek.sebastian.mastermindlogicgame.DialogFragments.ExitToMainMenuDialogFragment;
 import protzek.sebastian.mastermindlogicgame.DialogFragments.RestartGameDialogFragment;
+import protzek.sebastian.mastermindlogicgame.DialogFragments.YouLostDialogFragment;
+import protzek.sebastian.mastermindlogicgame.DialogFragments.YouWonDialogFragment;
 import protzek.sebastian.mastermindlogicgame.Listeners.BallTouchListener;
 import protzek.sebastian.mastermindlogicgame.Listeners.DragListenerDataCatcher;
 import protzek.sebastian.mastermindlogicgame.Math.Comparator;
@@ -35,7 +39,8 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
     private int dialogSwitch;
     private int turnsLeft;
     private int indexOfActiveTurn;
-    private List<Integer> masterNumbers;
+    private boolean didPlayerWon;
+    private ArrayList<Integer> masterNumbers;
     private ArrayList<SingleTurn> game;
     private GameBoardAdapter adapter;
 
@@ -51,6 +56,7 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         invokeAllBallViewsAndTouchListeners();
         restartEndTurnButton = findViewById(R.id.restart_end_turn_button);
         turnsTextView = findViewById(R.id.turns_text_view);
+
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         indexOfActiveTurn = 0;
@@ -59,61 +65,105 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         recyclerView.setAdapter(adapter);
 
         masterNumbers = ng.getMasterNumbers();
-        turnsLeft = ng.getNumberOfTurns();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        turnsLeft = prefs.getInt(getString(R.string.turns_key), 10);
+
         res = getResources();
         turnsLeftAsString = String.format(res.getString(R.string.turns_left), turnsLeft);
         turnsTextView.setText(turnsLeftAsString);
     }
 
 
-    public void restartOrEndTurn(View view) {
+    public void reStartOrEndTurn(View view) {
         String buttonStringValue = restartEndTurnButton.getText().toString();
         switch (buttonStringValue) {
             case "Start":
-                nextTurn(game);
-                restartEndTurnButton.setText(R.string.restart);
-                adapter.notifyItemChanged(game.size());
+                startGame();
                 break;
             case "Restart":
-                dialogSwitch = 1;
-                RestartGameDialogFragment dialogFragment = new RestartGameDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(), null);
+                restartGame();
                 break;
             default:
-                turnsLeft--;
-                turnsLeftAsString = String.format(res.getString(R.string.turns_left), turnsLeft);
-                turnsTextView.setText(turnsLeftAsString);
-                ArrayList<Integer> playerGuess = dldc.getPlayerNumbers();
-                ArrayList<Integer> guessResult = com.compareNumbers(masterNumbers, playerGuess);
-                boolean didPlayerWon = won.checkIfWon(guessResult);
-                SingleTurn updatedActiveTurn = showResult(guessResult, game.get(indexOfActiveTurn));
-                game.set(indexOfActiveTurn, updatedActiveTurn);
-                adapter.notifyDataSetChanged();
+                endTurn();
                 if (didPlayerWon) {
-                    Toast.makeText(this, "YOU WON", Toast.LENGTH_SHORT).show();
-//                //Alert YOU WON
+                    youWon();
                 } else if (turnsLeft > 0) {
-                    ng.resetDefaultNumbers();
-                    dldc.resetPlayerNumbers();
-                    restartEndTurnButton.setText(R.string.restart);
-                    int color = ContextCompat.getColor(restartEndTurnButton.getContext(), R.color.gold);
-                    restartEndTurnButton.setTextColor(color);
-                    nextTurn(game);
-                    indexOfActiveTurn = game.size() - 1;
-                    adapter.setIndexOfActiveTurn(indexOfActiveTurn);
+                    prepareNextTurn();
                 } else {
-//                //Alert YOU LOST - Back to menu / restart
-                    Toast.makeText(this, "YOU LOST", Toast.LENGTH_SHORT).show();
+                    youLost();
                 }
                 break;
         }
     }
 
+    public void backToMainMenu(View view) {
+        dialogSwitch = 2;
+        ExitToMainMenuDialogFragment dialogFragment = new ExitToMainMenuDialogFragment();
+        dialogFragment.show(getSupportFragmentManager(), null);
+    }
+
+    private void startGame() {
+        nextTurn(game);
+        restartEndTurnButton.setText(R.string.restart);
+        adapter.notifyItemChanged(game.size());
+    }
+
+    private void restartGame() {
+        dialogSwitch = 1;
+        RestartGameDialogFragment restartGameDialogFragment = new RestartGameDialogFragment();
+        restartGameDialogFragment.show(getSupportFragmentManager(), null);
+    }
+
+    private void endTurn() {
+        turnsLeft--;
+        turnsLeftAsString = String.format(res.getString(R.string.turns_left), turnsLeft);
+        turnsTextView.setText(turnsLeftAsString);
+        ArrayList<Integer> playerGuess = dldc.getPlayerNumbers();
+        ArrayList<Integer> guessResult = com.compareNumbers(masterNumbers, playerGuess);
+        didPlayerWon = won.checkIfWon(guessResult);
+        SingleTurn updatedActiveTurn = showResult(guessResult, game.get(indexOfActiveTurn));
+        game.set(indexOfActiveTurn, updatedActiveTurn);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void youWon() {
+        dialogSwitch = 3;
+        YouWonDialogFragment youWonDialogFragment = new YouWonDialogFragment();
+        youWonDialogFragment.show(getSupportFragmentManager(), null);
+        restartEndTurnButton.setText(R.string.restart);
+    }
+
+    private void prepareNextTurn() {
+        ng.resetDefaultNumbers();
+        dldc.resetPlayerNumbers();
+        restartEndTurnButton.setText(R.string.restart);
+        int color = ContextCompat.getColor(restartEndTurnButton.getContext(), R.color.gold);
+        restartEndTurnButton.setTextColor(color);
+        nextTurn(game);
+        indexOfActiveTurn = game.size() - 1;
+        adapter.setIndexOfActiveTurn(indexOfActiveTurn);
+    }
+
+    private void youLost() {
+        ng.resetDefaultNumbers();
+        dialogSwitch = 3;
+        YouLostDialogFragment youLostDialogFragment = new YouLostDialogFragment(masterNumbers);
+        youLostDialogFragment.show(getSupportFragmentManager(), null);
+        restartEndTurnButton.setText(R.string.restart);
+    }
+
     private void nextTurn(ArrayList<SingleTurn> list) {
+        final ScrollView scrollView = findViewById(R.id.scroll_view);
         final int ECG = R.drawable.empty_circle_golden;
         SingleTurn nextTurn = new SingleTurn(
                 ECG, ECG, ECG, ECG, ECG, ECG, ECG, ECG);
         list.add((nextTurn));
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 
     private SingleTurn showResult(ArrayList<Integer> guessResult, SingleTurn currentTurn) {
@@ -141,12 +191,12 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
 
     @SuppressLint("ClickableViewAccessibility")
     private void invokeAllBallViewsAndTouchListeners() {
-        ImageView blueBallImageView = findViewById(R.id.blue_ball);
-        ImageView yellowBallImageView = findViewById(R.id.yellow_ball);
-        ImageView redBallImageView = findViewById(R.id.red_ball);
-        ImageView greenBallImageView = findViewById(R.id.green_ball);
-        ImageView orangeBallImageView = findViewById(R.id.orange_ball);
-        ImageView whiteBallImageView = findViewById(R.id.white_ball);
+        ImageView blueBallImageView = findViewById(R.id.blue_ball_image_view);
+        ImageView yellowBallImageView = findViewById(R.id.yellow_ball_image_view);
+        ImageView redBallImageView = findViewById(R.id.red_ball_image_view);
+        ImageView greenBallImageView = findViewById(R.id.green_ball_image_view);
+        ImageView orangeBallImageView = findViewById(R.id.orange_ball_image_view);
+        ImageView whiteBallImageView = findViewById(R.id.white_ball_image_view);
 
         BallTouchListener btl = new BallTouchListener();
         blueBallImageView.setOnTouchListener(btl);
@@ -162,18 +212,14 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
                 finish();
-                if (dialogSwitch == 1) {
+                if (dialogSwitch == 1 || dialogSwitch == 3) {
                     startActivity(getIntent());
                 }
                 break;
             case DialogInterface.BUTTON_NEGATIVE:
+                if (dialogSwitch == 3)
+                    finish();
                 break;
         }
-    }
-
-    public void backToMainMenu(View view) {
-        dialogSwitch = 2;
-        ExitToMainMenuDialogFragment dialogFragment = new ExitToMainMenuDialogFragment();
-        dialogFragment.show(getSupportFragmentManager(), null);
     }
 }

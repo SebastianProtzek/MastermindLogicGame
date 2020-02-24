@@ -41,24 +41,22 @@ public class DragListenerDataCatcher {
                 singleTurn.setFourthBall(draggedBall);
                 break;
         }
-
-        // WE NEED TO SET EMPTYSLOTS OF SINGLE TURN OF GAME ACCORDING TO CURRENT TURN
     }
 
     void addEmptySlots() {
-        if(playerNumbers.size() == 0)
+        if (playerNumbers.size() == 0)
             for (int i = 0; i < 4; i++) {
-            playerNumbers.add(0);
-        }
+                playerNumbers.add(0);
+            }
     }
 
     void checkIfEndTurnPossible(Button endTurnButton) {
         if (playerNumbers.get(0) != 0
                 && playerNumbers.get(1) != 0
                 && playerNumbers.get(2) != 0
-                && playerNumbers.get(3)!= 0) {
+                && playerNumbers.get(3) != 0) {
             endTurnButton.setText(R.string.end_turn);
-            int color = ContextCompat.getColor(endTurnButton.getContext(), R.color.start_button);
+            int color = ContextCompat.getColor(endTurnButton.getContext(), R.color.start_blue);
             endTurnButton.setTextColor(color);
         }
     }

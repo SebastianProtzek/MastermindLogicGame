@@ -12,15 +12,15 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class QuitGameInfoDialogFragment extends AppCompatDialogFragment {
 
-    private DialogInterface.OnClickListener mListener;
+    private DialogInterface.OnClickListener listener;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
         builder.setTitle(("Wanna quit already?"))
-                .setPositiveButton(("Quit"), mListener)
-                .setNegativeButton(("Cancel"), mListener);
+                .setPositiveButton(("Quit"), listener)
+                .setNegativeButton(("Cancel"), listener);
         return builder.create();
     }
 
@@ -28,7 +28,7 @@ public class QuitGameInfoDialogFragment extends AppCompatDialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            mListener = (DialogInterface.OnClickListener) context;
+            listener = (DialogInterface.OnClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString() + "must implement DialogInterface.OnClickListener");
         }
@@ -37,6 +37,6 @@ public class QuitGameInfoDialogFragment extends AppCompatDialogFragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        listener = null;
     }
 }

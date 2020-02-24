@@ -10,18 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class RestartGameDialogFragment extends AppCompatDialogFragment {
-
+public class YouWonDialogFragment extends AppCompatDialogFragment {
     private DialogInterface.OnClickListener listener;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        builder.setTitle("Are you sure?")
-                .setMessage("Progress won't be saved")
-                .setPositiveButton("Restart", listener)
-                .setNegativeButton("Cancel", listener);
+        builder.setTitle("YOU WON!")
+                .setMessage("Do you want to play again?")
+                .setPositiveButton("Try again", listener)
+                .setNegativeButton("Main menu", listener);
         return builder.create();
     }
 

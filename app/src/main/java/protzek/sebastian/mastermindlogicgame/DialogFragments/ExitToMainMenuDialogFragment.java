@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
 
-    private DialogInterface.OnClickListener mListener;
+    private DialogInterface.OnClickListener listener;
 
     @NonNull
     @Override
@@ -20,8 +20,8 @@ public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
         builder.setTitle("Go back to main menu?")
                 .setMessage("Progres won't be saved")
-                .setPositiveButton("Main menu", mListener)
-                .setNegativeButton("Cancel", mListener);
+                .setPositiveButton("Main menu", listener)
+                .setNegativeButton("Cancel", listener);
         return builder.create();
     }
 
@@ -29,7 +29,7 @@ public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            mListener = (DialogInterface.OnClickListener) context;
+            listener = (DialogInterface.OnClickListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString() + "must implement DialogInterface.OnClickListener");
         }
@@ -38,6 +38,6 @@ public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        listener = null;
     }
 }

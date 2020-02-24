@@ -27,7 +27,7 @@ public enum EmptySlot {
     public static EmptySlot fromId(int id) {
         EmptySlot[] values = values();
         for (EmptySlot emptySlot : values) {
-            if(emptySlot.getId() == id)
+            if (emptySlot.getId() == id)
                 return emptySlot;
         }
         return null;
