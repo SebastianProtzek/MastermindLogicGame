@@ -7,14 +7,13 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,7 +38,7 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
     private int dialogSwitch;
     private int turnsLeft;
     private int indexOfActiveTurn;
-    private boolean didPlayerWon;
+    private boolean didPlayerWin;
     private ArrayList<Integer> masterNumbers;
     private ArrayList<SingleTurn> game;
     private GameBoardAdapter adapter;
@@ -85,7 +84,7 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
                 break;
             default:
                 endTurn();
-                if (didPlayerWon) {
+                if (didPlayerWin) {
                     youWon();
                 } else if (turnsLeft > 0) {
                     prepareNextTurn();
@@ -103,7 +102,7 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
     }
 
     private void startGame() {
-        nextTurn(game);
+        createNextTurn(game);
         restartEndTurnButton.setText(R.string.restart);
         adapter.notifyItemChanged(game.size());
     }
@@ -120,7 +119,7 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         turnsTextView.setText(turnsLeftAsString);
         ArrayList<Integer> playerGuess = dldc.getPlayerNumbers();
         ArrayList<Integer> guessResult = com.compareNumbers(masterNumbers, playerGuess);
-        didPlayerWon = won.checkIfWon(guessResult);
+        didPlayerWin = won.checkIfWon(guessResult);
         SingleTurn updatedActiveTurn = showResult(guessResult, game.get(indexOfActiveTurn));
         game.set(indexOfActiveTurn, updatedActiveTurn);
         adapter.notifyDataSetChanged();
@@ -139,9 +138,10 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         restartEndTurnButton.setText(R.string.restart);
         int color = ContextCompat.getColor(restartEndTurnButton.getContext(), R.color.gold);
         restartEndTurnButton.setTextColor(color);
-        nextTurn(game);
+        createNextTurn(game);
         indexOfActiveTurn = game.size() - 1;
         adapter.setIndexOfActiveTurn(indexOfActiveTurn);
+        scrollView();
     }
 
     private void youLost() {
@@ -150,20 +150,6 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         YouLostDialogFragment youLostDialogFragment = new YouLostDialogFragment(masterNumbers);
         youLostDialogFragment.show(getSupportFragmentManager(), null);
         restartEndTurnButton.setText(R.string.restart);
-    }
-
-    private void nextTurn(ArrayList<SingleTurn> list) {
-        final ScrollView scrollView = findViewById(R.id.scroll_view);
-        final int ECG = R.drawable.empty_circle_golden;
-        SingleTurn nextTurn = new SingleTurn(
-                ECG, ECG, ECG, ECG, ECG, ECG, ECG, ECG);
-        list.add((nextTurn));
-        scrollView.post(new Runnable() {
-            @Override
-            public void run() {
-                scrollView.fullScroll(View.FOCUS_DOWN);
-            }
-        });
     }
 
     private SingleTurn showResult(ArrayList<Integer> guessResult, SingleTurn currentTurn) {
@@ -187,6 +173,23 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         currentTurn.setThirdScorePin(scorePins.get(2));
         currentTurn.setFourthScorePin(scorePins.get(3));
         return currentTurn;
+    }
+
+    private void createNextTurn(ArrayList<SingleTurn> list) {
+        final int ECG = R.drawable.empty_circle_golden;
+        SingleTurn nextTurn = new SingleTurn(
+                ECG, ECG, ECG, ECG, ECG, ECG, ECG, ECG);
+        list.add((nextTurn));
+    }
+
+    private void scrollView() {
+        final NestedScrollView scrollView = findViewById(R.id.scroll_view);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")

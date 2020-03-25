@@ -1,14 +1,21 @@
 package protzek.sebastian.mastermindlogicgame.DialogFragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import java.util.Objects;
+
+import protzek.sebastian.mastermindlogicgame.R;
 
 public class YouWonDialogFragment extends AppCompatDialogFragment {
     private DialogInterface.OnClickListener listener;
@@ -17,10 +24,11 @@ public class YouWonDialogFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        builder.setTitle("YOU WON!")
-                .setMessage("Do you want to play again?")
-                .setPositiveButton("Try again", listener)
-                .setNegativeButton("Main menu", listener);
+        LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_you_won, null);
+        builder.setView(view)
+                .setPositiveButton(R.string.play_again, listener)
+                .setNegativeButton(R.string.main_menu, listener);
         return builder.create();
     }
 

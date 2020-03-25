@@ -1,5 +1,6 @@
 package protzek.sebastian.mastermindlogicgame.DialogFragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -32,10 +33,10 @@ public class YouLostDialogFragment extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
         LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
-        View view = inflater.inflate(R.layout.correct_set, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_you_lost, null);
         builder.setView(view)
-                .setPositiveButton("Restart", listener)
-                .setNegativeButton("Main menu", listener);
+                .setPositiveButton(R.string.restart, listener)
+                .setNegativeButton(R.string.main_menu, listener);
 
         ImageView firstCorrectBallImageView = view.findViewById(R.id.first_correct_ball_image_view);
         ImageView secondCorrectBallImageView = view.findViewById(R.id.second_correct_ball_image_view);

@@ -47,7 +47,6 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
         holder.imageViewSecondBall.setOnDragListener(bdl);
         holder.imageViewThirdBall.setOnDragListener(bdl);
         holder.imageViewFourthBall.setOnDragListener(bdl);
-//        holder.imageViewSecondBall.removeOnLayoutChangeListener(bdl);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
         return game.size();
     }
 
-    class GameBoardViewHolder extends RecyclerView.ViewHolder {
+    static class GameBoardViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageViewFirstBall;
         private ImageView imageViewSecondBall;
         private ImageView imageViewThirdBall;

@@ -3,8 +3,8 @@
     <color name="colorPrimary">#131313</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="textColor">#000000</color>
-    <color name="gold">#AA980E</color>
+    <color name="textColor">#E5E1D8</color>
+
 
     <color name="start_blue">#014BB1</color>
     <color name="how_to_play_gold">#F5B301</color>
@@ -13,5 +13,6 @@
     <color name="credits_orange">#CF4104</color>
     <color name="quit_red">#6B0104</color>
 
+    <color name="gold">#AA980E</color>
     <color name="margin_color">#1F1F1F</color>
 </resources>

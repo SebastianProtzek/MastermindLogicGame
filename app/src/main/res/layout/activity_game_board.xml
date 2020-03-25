@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/margin_color">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/balls_linear_layout"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/balls_linear_layout"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             tools:itemCount="1"
             tools:listitem="@layout/single_turn" />
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/balls_linear_layout"
@@ -34,50 +34,50 @@
         <ImageView
             android:id="@+id/blue_ball_image_view"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_blue"
-            android:contentDescription="@string/ball_description" />
+            android:layout_weight="1"
+            android:contentDescription="@string/ball_description"
+            android:src="@drawable/ball_blue" />
 
         <ImageView
             android:id="@+id/yellow_ball_image_view"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_yellow"
-            android:contentDescription="@string/ball_description" />
+            android:layout_weight="1"
+            android:contentDescription="@string/ball_description"
+            android:src="@drawable/ball_yellow" />
 
         <ImageView
             android:id="@+id/white_ball_image_view"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_white"
-            android:contentDescription="@string/ball_description" />
+            android:layout_weight="1"
+            android:contentDescription="@string/ball_description"
+            android:src="@drawable/ball_white" />
 
         <ImageView
             android:id="@+id/green_ball_image_view"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_green"
-            android:contentDescription="@string/ball_description" />
+            android:layout_weight="1"
+            android:contentDescription="@string/ball_description"
+            android:src="@drawable/ball_green" />
 
         <ImageView
             android:id="@+id/orange_ball_image_view"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_orange"
-            android:contentDescription="@string/ball_description" />
+            android:layout_weight="1"
+            android:contentDescription="@string/ball_description"
+            android:src="@drawable/ball_orange" />
 
         <ImageView
             android:id="@+id/red_ball_image_view"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ball_red"
-            android:contentDescription="@string/ball_description" />
+            android:layout_weight="1"
+            android:contentDescription="@string/ball_description"
+            android:src="@drawable/ball_red" />
     </LinearLayout>
 
     <LinearLayout
@@ -93,8 +93,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:text="@string/exit"
             android:onClick="backToMainMenu"
+            android:text="@string/exit"
             android:textColor="@color/gold"
             android:textSize="24sp" />
 
@@ -106,7 +106,9 @@
             android:background="@color/colorPrimaryDark"
             android:gravity="center"
             android:text="@string/turns_left"
+            android:textAllCaps="true"
             android:textColor="@color/gold"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <Button
@@ -115,9 +117,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
+            android:onClick="reStartOrEndTurn"
             android:text="@string/start"
             android:textColor="@color/gold"
-            android:onClick="reStartOrEndTurn"
             android:textSize="24sp" />
     </LinearLayout>
 

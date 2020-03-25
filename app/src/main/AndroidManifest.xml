@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="protzek.sebastian.mastermindlogicgame">
 
     <application
@@ -22,11 +23,17 @@
             android:name=".GameBoardActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name="$MainMenu.OptionsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".MainMenu.OptionsActivity"
+            android:parentActivityName=".MainActivity"
+            tools:ignore="InnerclassSeparator" />
         <activity
-            android:name="$MainMenu.CreditsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".MainMenu.CreditsActivity"
+            android:parentActivityName=".MainActivity"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".MainMenu.HowToPlay.HowToPlayActivity"
+            android:parentActivityName=".MainActivity"
+            tools:ignore="InnerclassSeparator" />
+
     </application>
 
 </manifest>

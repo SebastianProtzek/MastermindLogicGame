@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
+import androidx.core.widget.NestedScrollView;
+
 import protzek.sebastian.mastermindlogicgame.R;
 import protzek.sebastian.mastermindlogicgame.SingleTurn;
 
@@ -28,7 +30,7 @@ public class BallDragListener implements View.OnDragListener {
             int action = event.getAction();
             final View draggedView = (View) event.getLocalState();
             Button restartEndTurnButton = dropView.getRootView().findViewById(R.id.restart_end_turn_button);
-            ScrollView scrollView = dropView.getRootView().findViewById(R.id.scroll_view);
+            NestedScrollView scrollView = dropView.getRootView().findViewById(R.id.scroll_view);
             ImageView img = dropView.findViewById(dropView.getId());
             dldc.addEmptySlots();
 

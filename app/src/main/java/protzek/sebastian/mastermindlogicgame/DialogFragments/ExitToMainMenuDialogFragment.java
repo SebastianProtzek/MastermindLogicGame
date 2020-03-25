@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import protzek.sebastian.mastermindlogicgame.R;
+
 public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
 
     private DialogInterface.OnClickListener listener;
@@ -18,10 +20,10 @@ public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        builder.setTitle("Go back to main menu?")
-                .setMessage("Progres won't be saved")
-                .setPositiveButton("Main menu", listener)
-                .setNegativeButton("Cancel", listener);
+        builder.setTitle(R.string.go_back_to_main_menu_question)
+                .setMessage(R.string.progress_wont_be_saved)
+                .setPositiveButton(R.string.main_menu, listener)
+                .setNegativeButton(R.string.cancel, listener);
         return builder.create();
     }
 

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Mastermind Logic Game</string>
+
+    //Main menu
+    <string name="start">Start</string>
+    <string name="how_to_play">Zasady \ngry</string>
+    <string name="options">Opcje</string>
+    <string name="high_scores">Tablica \nrekordów</string>
+    <string name="credits">Twórcy</string>
+    <string name="quit">Wyjście</string>
+
+    //Game board
+    <string name="turns_left">Pozostało \ntur: %1$d</string>
+    <string name="restart">Restart</string>
+    <string name="end_turn">Koniec</string>
+    <string name="exit">Wyjdź</string>
+
+    //How to Play
+    <string name="page_one_tab">Stwórz set</string>
+    <string name="page_two_tab">Analizuj</string>
+    <string name="page_three_tab">Wygrywaj!</string>
+    <string name="page_one_tutorial">Twoim celem jest znaleźć \nwłaściwą kombinację kul. \n\nPrzeciągnij i upuść kule \naby utrzowyć set. \n\nGdy jesteś gotowy \nwciśnij \'Koniec tury\'</string>
+    <string name="page_two_tutorial">Ten symbol oznacza, że jedna z kul ma:</string>
+    <string name="page_two_circle_fire"> - właściwy kolor i właściwą pozycję</string>
+    <string name="page_two_circle_thunder"> - właściwy kolor, ale złą pozycję</string>
+    <string name="page_two_circle_golden"> - zły kolor i złą pozycję</string>
+    <string name="page_two_tutorial2">Użyj informacji by stworzyć nowy set</string>
+    <string name="page_three_tutorial">Wygrywasz, gdy wszystkie kule \nmają właściwy kolor i pozycję</string>
+    <string name="page_three_tutorial2">Przegrywasz, gdy skończą Ci się tury</string>
+
+    //Options
+    <string name="number_of_turns">Liczba tur:</string>
+    <string name="language">Język:</string>
+    <string name="sound">Dźwięk:</string>
+    <string name="go_back_to_main_menu">Powrót do menu głównego</string>
+
+    //Credits
+    <string name="creator">Gra stworzona przez \nSebastiana Protzek</string>
+    <string name="check_code"><u>Kliknij tu by zobaczyć kod</u></string>
+    <string name="have_fun">Dobrej zabawy!</string>
+    <string name="wanna_rate">Chcesz ocenić moją grę? \nLOL, nie możesz xD</string>
+
+
+    //Dialog Fragments
+    <string name="you_won">ZWYCIĘSTWO!</string>
+    <string name="you_lost">PRZEGRANA!</string>
+    <string name="the_correct_set_was">Poprawne rozwiązanie:</string>
+    <string name="do_you_want_to_play_again">Chcesz zagrać ponownie?</string>
+    <string name="go_back_to_main_menu_question">Wrócić do menu głównego?</string>
+    <string name="wanna_quit_already">Na pewno chcesz wyjść?</string>
+    <string name="are_you_sure">Opuścić rozgrywkę?</string>
+    <string name="progress_wont_be_saved">Postęp nie zostanie zapisany</string>
+    <string name="play_again">Zagraj ponownie</string>
+    <string name="main_menu">Menu główne</string>
+    <string name="cancel">Anuluj</string>
+</resources>

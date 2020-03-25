@@ -1,27 +1,66 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Mastermind Logic Game</string>
-    <string name="empty_slot_description">an empty slot of a single turn where you can drag a chosen ball</string>
-    <string name="score_pin_description">one of the four score pins where the result of the turn will be displayed</string>
-    <string name="ball_description">a ball to be dragged and dropped over an empty slot</string>
-    <string name="exit">Exit</string>
-    <string name="turns_left">TURNS  \nLEFT: %1$d</string>
+
+    //Main menu
     <string name="start">Start</string>
-    <string name="end_turn">END TURN</string>
+    <string name="how_to_play">How \nto \nplay</string>
+    <string name="options">Options</string>
+    <string name="high_scores">High \nScores</string>
+    <string name="credits">Credits</string>
+    <string name="quit">Quit</string>
+
+    //Game board
+    <string name="turns_left">Turns \nleft: %1$d</string>
     <string name="restart">Restart</string>
+    <string name="end_turn">End turn</string>
+    <string name="exit">Exit</string>
+
+    //How to Play
+    <string name="page_one_tab">Build a set</string>
+    <string name="page_two_tab">Get feedback</string>
+    <string name="page_three_tab">Win or lose</string>
+    <string name="page_one_tutorial">Your goal is to find \nthe correct set of balls. \n\nDrag and drop the balls \nto create a set of four. \n\nWhen you are ready \npress \'End Turn\'</string>
+    <string name="page_two_tutorial">This symbol means one of the balls has:</string>
+    <string name="page_two_circle_fire"> - Right color and right position</string>
+    <string name="page_two_circle_thunder"> - Right color but wrong position</string>
+    <string name="page_two_circle_golden"> - Wrong color and wrong position</string>
+    <string name="page_two_tutorial2">Use information to create a new set</string>
+    <string name="page_three_tutorial">You win when all balls \nhave correct color and position</string>
+    <string name="page_three_tutorial2">You lose when there are no turns left</string>
+
+    //Options
+    <string name="number_of_turns">Number of turns:</string>
+    <string name="language">Language:</string>
+    <string name="sound">Sound:</string>
+    <string name="go_back_to_main_menu">◄◄◄ go back to main menu</string>
+
+    //Credits
     <string name="creator">Game created by Sebastian Protzek</string>
     <string name="check_code"><u>Click here to check the code</u></string>
     <string name="have_fun">I hope you will have fun!</string>
-    <string name="turns_key">Klucz</string>
+    <string name="wanna_rate" tools:ignore="Typos">Wanna rate my game? \nLol, you can\'t xD</string>
+
+
+    //Dialog Fragments
+    <string name="you_won">YOU WON!</string>
     <string name="you_lost">YOU LOST!</string>
     <string name="the_correct_set_was">The correct set was:</string>
-    <string name="number_of_turns">Number of turns:</string>
-    <string name="language">Language:</string>
-    <string name="flag_description">click_flag_to_change_language</string>
-    <string name="volume_icon">volume icon</string>
-    <string name="go_back_to_main_menu">go back  to main menu</string>
-    <string name="how_to_play">How to play</string>
-    <string name="options">Options</string>
-    <string name="high_scores">High Scores</string>
-    <string name="credits">Credits</string>
-    <string name="quit">Quit</string>
+    <string name="do_you_want_to_play_again">Do you want to play again?</string>
+    <string name="go_back_to_main_menu_question">Go back to main menu?</string>
+    <string name="wanna_quit_already">Want to quit already?</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="progress_wont_be_saved">Progress won\'t be saved</string>
+    <string name="play_again">Play again</string>
+    <string name="main_menu">Main menu</string>
+    <string name="cancel">Cancel</string>
+
+    //Non-Translatable
+    <string name="turns_key" translatable="false">Turns Key</string>
+    <string name="language_key" translatable="false">Language Key</string>
+    <string name="volume_key" translatable="false">Volume Key</string>
+    <string name="empty_slot_description" translatable="false">an empty slot of a single turn where you can drag a chosen ball</string>
+    <string name="score_pin_description" translatable="false">one of the four score pins where the result of the turn will be displayed</string>
+    <string name="ball_description" translatable="false">a ball to be dragged and dropped over an empty slot</string>
+    <string name="flag_description" translatable="false">click_flag_to_change_language</string>
+    <string name="volume_icon_description" translatable="false">volume icon</string>
 </resources>
