@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.Listeners;
+package protzek.sebastian.mastermindlogicgame.listeners;
 
 import android.view.View;
 import android.widget.Button;
@@ -9,10 +9,10 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import protzek.sebastian.mastermindlogicgame.Enums.Ball;
-import protzek.sebastian.mastermindlogicgame.Enums.EmptySlot;
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.SingleTurn;
+import protzek.sebastian.mastermindlogicgame.enums.Ball;
+import protzek.sebastian.mastermindlogicgame.enums.EmptySlot;
+import protzek.sebastian.mastermindlogicgame.gameboard.SingleTurn;
 
 public class DragListenerDataCatcher {
 

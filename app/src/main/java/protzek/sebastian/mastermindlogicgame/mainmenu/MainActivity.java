@@ -1,11 +1,16 @@
-package protzek.sebastian.mastermindlogicgame;
+package protzek.sebastian.mastermindlogicgame.mainmenu;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,22 +18,24 @@ import androidx.preference.PreferenceManager;
 
 import java.util.Locale;
 
-import protzek.sebastian.mastermindlogicgame.DialogFragments.QuitGameInfoDialogFragment;
-import protzek.sebastian.mastermindlogicgame.MainMenu.CreditsActivity;
-import protzek.sebastian.mastermindlogicgame.MainMenu.HowToPlay.HowToPlayActivity;
-import protzek.sebastian.mastermindlogicgame.MainMenu.OptionsActivity;
+import protzek.sebastian.mastermindlogicgame.R;
+import protzek.sebastian.mastermindlogicgame.dialogfragments.QuitGameInfoDialogFragment;
+import protzek.sebastian.mastermindlogicgame.gameboard.GameBoardActivity;
+import protzek.sebastian.mastermindlogicgame.mainmenu.howtoplay.HowToPlayActivity;
+import protzek.sebastian.mastermindlogicgame.media.MusicPlayer;
 
 public class MainActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
     private SharedPreferences prefs;
-    private Intent optionsIntent;
     private MusicPlayer musicPlayer = MusicPlayer.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: find good font for texts
         super.onCreate(savedInstanceState);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         setLanguage();
         setVolume();
+        printGreeting();
         setContentView(R.layout.activity_main);
     }
 
@@ -43,10 +50,13 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
     }
 
     public void openOptions(View view) {
-        if (optionsIntent == null) {
-            optionsIntent = new Intent(MainActivity.this, OptionsActivity.class);
-        }
-        startActivityForResult(optionsIntent, 0);
+        Intent intent = new Intent(MainActivity.this, OptionsActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    public void openHighScores(View view) {
+        Intent intent = new Intent(MainActivity.this, HighScoresActivity.class);
+        startActivity(intent);
     }
 
     public void openCredits(View view) {
@@ -94,5 +104,21 @@ public class MainActivity extends AppCompatActivity implements DialogInterface.O
         if (volume) {
             musicPlayer.getSound(MainActivity.this);
         }
+    }
+
+    private void printGreeting() {
+        Resources res = getResources();
+        String defaultNickName = "no_name";
+        String nickname = prefs.getString(getString(R.string.nickname_key), defaultNickName);
+        String toastMessage;
+        if (nickname.equals(defaultNickName)) {
+            toastMessage = getString(R.string.random_greeting);
+        } else {
+            toastMessage = String.format(res.getString(R.string.personal_greeting), nickname);
+        }
+        Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_LONG);
+        ((TextView) ((LinearLayout) toast.getView()).getChildAt(0))
+                .setGravity(Gravity.CENTER_HORIZONTAL);
+        toast.show();
     }
 }

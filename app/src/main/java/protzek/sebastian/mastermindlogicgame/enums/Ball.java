@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.Enums;
+package protzek.sebastian.mastermindlogicgame.enums;
 
 import protzek.sebastian.mastermindlogicgame.R;
 
@@ -20,18 +20,6 @@ public enum Ball {
         this.imageResource = imageResource;
     }
 
-    public int getBallNumber() {
-        return ballNumber;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getImageResource() {
-        return imageResource;
-    }
-
     public static Ball fromId(int id) {
         Ball[] values = values();
         for (Ball ball : values) {
@@ -48,5 +36,17 @@ public enum Ball {
                 return ball;
         }
         return null;
+    }
+
+    public int getBallNumber() {
+        return ballNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getImageResource() {
+        return imageResource;
     }
 }

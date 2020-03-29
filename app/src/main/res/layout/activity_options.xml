@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -9,6 +10,29 @@
     android:paddingTop="100dp"
     android:paddingEnd="90dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/nickname_options"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nickname_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:autofillHints="your nickname"
+            android:gravity="end"
+            android:hint="@string/nickname_options"
+            android:inputType="text" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +45,8 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="@string/number_of_turns"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
 
         <NumberPicker
             android:id="@+id/turns_picker"
@@ -43,7 +68,8 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="@string/language"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/english_flag_image_view"
@@ -84,8 +110,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="@string/sound"
-            android:textColor="@color/colorPrimary" />
+            android:text="@string/music"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -106,7 +133,9 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/background_main_menu_button"
         android:gravity="center"
+        android:maxLines="1"
         android:onClick="backToMainMenu"
         android:padding="10dp"
-        android:text="@string/go_back_to_main_menu" />
+        android:text="@string/go_back_to_main_menu"
+        app:autoSizeTextType="uniform" />
 </LinearLayout>

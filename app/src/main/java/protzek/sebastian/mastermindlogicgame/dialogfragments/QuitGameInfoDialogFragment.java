@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.DialogFragments;
+package protzek.sebastian.mastermindlogicgame.dialogfragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import protzek.sebastian.mastermindlogicgame.R;
 
-public class RestartGameDialogFragment extends AppCompatDialogFragment {
+public class QuitGameInfoDialogFragment extends AppCompatDialogFragment {
 
     private DialogInterface.OnClickListener listener;
 
@@ -20,10 +20,9 @@ public class RestartGameDialogFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        builder.setTitle(R.string.are_you_sure)
-                .setMessage(R.string.progress_wont_be_saved)
-                .setPositiveButton(R.string.restart, listener)
-                .setNegativeButton(R.string.cancel, listener);
+        builder.setTitle((getString(R.string.wanna_quit_already)))
+                .setPositiveButton((getString(R.string.quit)), listener)
+                .setNegativeButton((R.string.cancel), listener);
         return builder.create();
     }
 

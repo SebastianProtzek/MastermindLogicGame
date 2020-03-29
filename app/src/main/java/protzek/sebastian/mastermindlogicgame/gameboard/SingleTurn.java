@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame;
+package protzek.sebastian.mastermindlogicgame.gameboard;
 
 public class SingleTurn {
 

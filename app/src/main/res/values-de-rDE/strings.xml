@@ -8,9 +8,11 @@
     <string name="high_scores">Highscores</string>
     <string name="credits">Credits</string>
     <string name="quit">Beenden</string>
+    <string name="random_greeting">Danke fürs Spielen! Vergesse nicht, einen Spielernamen in Einstellungen zu wählen. Viel Spaß!</string>
+    <string name="personal_greeting">Hallo %1$s! Nicht du? Gebe deinen Spielernamen in Einstellungen ein.</string>
 
     //Game board
-    <string name="turns_left">Züge: %1$d</string>
+    <string name="turns_left">Zug %1$d von %2$d</string>
     <string name="restart">Restart</string>
     <string name="end_turn">Zugende</string>
     <string name="exit">Menu</string>
@@ -26,13 +28,19 @@
     <string name="page_two_circle_golden"> - Falsche Farbe und falsche Position hat</string>
     <string name="page_two_tutorial2">Nutze die Informationen \nbei Bildung eines neuen Sets</string>
     <string name="page_three_tutorial">Du gewinnst, wenn alle Kugeln \nrichtige Farbe und Position haben</string>
-    <string name="page_three_tutorial2">Du verlierst, wenn keine Züge mehr vorhanden sind</string>
+    <string name="page_three_tutorial2">Du verlierst, wenn keine Züge \nmehr vorhanden sind</string>
 
     //Options
+    <string name="nickname_options">Spielername:</string>
     <string name="number_of_turns">Anzahl der Züge:</string>
     <string name="language">Sprache:</string>
-    <string name="sound">Sound:</string>
-    <string name="go_back_to_main_menu">Zurück zum Hauptmenu</string>
+    <string name="music">Musik:</string>
+    <string name="go_back_to_main_menu">◄◄◄ Zurück zum Hauptmenu</string>
+
+    //High Scores
+    <string name="top">Top</string>
+    <string name="nickname_high_scores">Spielername</string>
+    <string name="result">Ergebnis</string>
 
     //Credits
     <string name="creator">Spiel entwickelt von \nSebastian Protzek</string>
@@ -50,7 +58,7 @@
     <string name="wanna_quit_already">Willst du das Spiel beenden?</string>
     <string name="are_you_sure">Bist du sicher?</string>
     <string name="progress_wont_be_saved">Der Spielfortschritt wird nicht gespeichert</string>
-    <string name="play_again">neues Spiel</string>
+    <string name="play_again">Neues Spiel</string>
     <string name="main_menu">Zum Hauptmenu</string>
     <string name="cancel">Abbrechen</string>
 </resources>

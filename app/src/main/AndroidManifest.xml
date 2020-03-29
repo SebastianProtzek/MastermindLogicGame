@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="protzek.sebastian.mastermindlogicgame">
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="true">
-        <activity android:name=".MainActivity"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".mainmenu.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,19 +20,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GameBoardActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".gameboard.GameBoardActivity"
+            android:parentActivityName=".mainmenu.MainActivity" />
         <activity
-            android:name=".MainMenu.OptionsActivity"
-            android:parentActivityName=".MainActivity"
-            tools:ignore="InnerclassSeparator" />
+            android:name=".mainmenu.OptionsActivity"
+            android:parentActivityName=".mainmenu.MainActivity" />
         <activity
-            android:name=".MainMenu.CreditsActivity"
-            android:parentActivityName=".MainActivity"
-            tools:ignore="InnerclassSeparator" />
-        <activity android:name=".MainMenu.HowToPlay.HowToPlayActivity"
-            android:parentActivityName=".MainActivity"
-            tools:ignore="InnerclassSeparator" />
+            android:name=".mainmenu.CreditsActivity"
+            android:parentActivityName=".mainmenu.MainActivity" />
+        <activity
+            android:name=".mainmenu.howtoplay.HowToPlayActivity"
+            android:parentActivityName=".mainmenu.MainActivity" />
+        <activity
+            android:name=".mainmenu.HighScoresActivity"
+            android:parentActivityName=".mainmenu.MainActivity" />
 
     </application>
 

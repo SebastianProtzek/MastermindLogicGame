@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.Listeners;
+package protzek.sebastian.mastermindlogicgame.listeners;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;

@@ -8,9 +8,11 @@
     <string name="high_scores">Tablica \nrekordów</string>
     <string name="credits">Twórcy</string>
     <string name="quit">Wyjście</string>
+    <string name="random_greeting">Dzięki za granie w moją grę! Nie zapomnij wpisać swój nick w opcjach. Dobrej zabawy!</string>
+    <string name="personal_greeting">Cześć %1$s! To nie Ty? Wprowadź swój nick w opcjach.</string>
 
     //Game board
-    <string name="turns_left">Pozostało \ntur: %1$d</string>
+    <string name="turns_left">Tura %1$d z %2$d</string>
     <string name="restart">Restart</string>
     <string name="end_turn">Koniec</string>
     <string name="exit">Wyjdź</string>
@@ -29,10 +31,16 @@
     <string name="page_three_tutorial2">Przegrywasz, gdy skończą Ci się tury</string>
 
     //Options
+    <string name="nickname_options">Imię gracza:</string>
     <string name="number_of_turns">Liczba tur:</string>
     <string name="language">Język:</string>
-    <string name="sound">Dźwięk:</string>
-    <string name="go_back_to_main_menu">Powrót do menu głównego</string>
+    <string name="music">Muzyka:</string>
+    <string name="go_back_to_main_menu">◄◄ Wróć do menu głównego</string>
+
+    //High Scores
+    <string name="top">Top</string>
+    <string name="nickname_high_scores">Imię gracza</string>
+    <string name="result">Wynik</string>
 
     //Credits
     <string name="creator">Gra stworzona przez \nSebastiana Protzek</string>

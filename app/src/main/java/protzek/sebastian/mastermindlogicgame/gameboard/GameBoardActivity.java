@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame;
+package protzek.sebastian.mastermindlogicgame.gameboard;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -20,28 +20,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import protzek.sebastian.mastermindlogicgame.DialogFragments.ExitToMainMenuDialogFragment;
-import protzek.sebastian.mastermindlogicgame.DialogFragments.RestartGameDialogFragment;
-import protzek.sebastian.mastermindlogicgame.DialogFragments.YouLostDialogFragment;
-import protzek.sebastian.mastermindlogicgame.DialogFragments.YouWonDialogFragment;
-import protzek.sebastian.mastermindlogicgame.Listeners.BallTouchListener;
-import protzek.sebastian.mastermindlogicgame.Listeners.DragListenerDataCatcher;
-import protzek.sebastian.mastermindlogicgame.Math.Comparator;
-import protzek.sebastian.mastermindlogicgame.Math.NumbersGenerator;
-import protzek.sebastian.mastermindlogicgame.Math.WonOrNot;
+import protzek.sebastian.mastermindlogicgame.R;
+import protzek.sebastian.mastermindlogicgame.dialogfragments.ExitToMainMenuDialogFragment;
+import protzek.sebastian.mastermindlogicgame.dialogfragments.RestartGameDialogFragment;
+import protzek.sebastian.mastermindlogicgame.dialogfragments.YouLostDialogFragment;
+import protzek.sebastian.mastermindlogicgame.dialogfragments.YouWonDialogFragment;
+import protzek.sebastian.mastermindlogicgame.listeners.BallTouchListener;
+import protzek.sebastian.mastermindlogicgame.listeners.DragListenerDataCatcher;
+import protzek.sebastian.mastermindlogicgame.math.Comparator;
+import protzek.sebastian.mastermindlogicgame.math.NumbersGenerator;
+import protzek.sebastian.mastermindlogicgame.math.WonOrNot;
 
 public class GameBoardActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
     private Resources res;
     private Button restartEndTurnButton;
     private TextView turnsTextView;
     private String turnsLeftAsString;
-    private int dialogSwitch;
-    private int turnsLeft;
-    private int indexOfActiveTurn;
+    private int dialogSwitch, numberOfTurns, turnsLeft, indexOfActiveTurn;
     private boolean didPlayerWin;
     private ArrayList<Integer> masterNumbers;
     private ArrayList<SingleTurn> game;
     private GameBoardAdapter adapter;
+    private SharedPreferences prefs;
 
     private DragListenerDataCatcher dldc = new DragListenerDataCatcher();
     private NumbersGenerator ng = new NumbersGenerator();
@@ -52,23 +52,24 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
-        invokeAllBallViewsAndTouchListeners();
+        invokeAllBallListeners();
         restartEndTurnButton = findViewById(R.id.restart_end_turn_button);
         turnsTextView = findViewById(R.id.turns_text_view);
 
+        masterNumbers = ng.getMasterNumbers();
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        indexOfActiveTurn = 0;
+        numberOfTurns = prefs.getInt(getString(R.string.turns_key), 10);
+        turnsLeft = numberOfTurns;
+
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        indexOfActiveTurn = 0;
         game = new ArrayList<>();
         adapter = new GameBoardAdapter(game, dldc, indexOfActiveTurn);
         recyclerView.setAdapter(adapter);
 
-        masterNumbers = ng.getMasterNumbers();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        turnsLeft = prefs.getInt(getString(R.string.turns_key), 10);
-
         res = getResources();
-        turnsLeftAsString = String.format(res.getString(R.string.turns_left), turnsLeft);
+        turnsLeftAsString = String.format(res.getString(R.string.turns_left), (indexOfActiveTurn + 1), numberOfTurns);
         turnsTextView.setText(turnsLeftAsString);
     }
 
@@ -115,8 +116,6 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
 
     private void endTurn() {
         turnsLeft--;
-        turnsLeftAsString = String.format(res.getString(R.string.turns_left), turnsLeft);
-        turnsTextView.setText(turnsLeftAsString);
         ArrayList<Integer> playerGuess = dldc.getPlayerNumbers();
         ArrayList<Integer> guessResult = com.compareNumbers(masterNumbers, playerGuess);
         didPlayerWin = won.checkIfWon(guessResult);
@@ -129,6 +128,8 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         dialogSwitch = 3;
         YouWonDialogFragment youWonDialogFragment = new YouWonDialogFragment();
         youWonDialogFragment.show(getSupportFragmentManager(), null);
+        getPlayerScore();
+        // TODO: add sound of winning
         restartEndTurnButton.setText(R.string.restart);
     }
 
@@ -140,6 +141,8 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         restartEndTurnButton.setTextColor(color);
         createNextTurn(game);
         indexOfActiveTurn = game.size() - 1;
+        turnsLeftAsString = String.format(res.getString(R.string.turns_left), (indexOfActiveTurn + 1), numberOfTurns);
+        turnsTextView.setText(turnsLeftAsString);
         adapter.setIndexOfActiveTurn(indexOfActiveTurn);
         scrollView();
     }
@@ -149,6 +152,7 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         dialogSwitch = 3;
         YouLostDialogFragment youLostDialogFragment = new YouLostDialogFragment(masterNumbers);
         youLostDialogFragment.show(getSupportFragmentManager(), null);
+        // TODO: add sound of losing
         restartEndTurnButton.setText(R.string.restart);
     }
 
@@ -192,8 +196,15 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         });
     }
 
+    private void getPlayerScore() {
+        int playerScore = (indexOfActiveTurn + 1) * 100 + numberOfTurns;
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(getString(R.string.player_score_key), playerScore);
+        editor.apply();
+    }
+
     @SuppressLint("ClickableViewAccessibility")
-    private void invokeAllBallViewsAndTouchListeners() {
+    private void invokeAllBallListeners() {
         ImageView blueBallImageView = findViewById(R.id.blue_ball_image_view);
         ImageView yellowBallImageView = findViewById(R.id.yellow_ball_image_view);
         ImageView redBallImageView = findViewById(R.id.red_ball_image_view);

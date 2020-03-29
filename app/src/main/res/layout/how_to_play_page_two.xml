@@ -42,9 +42,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="@string/page_two_circle_fire"
             android:textColor="@color/how_to_play_gold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,9 +66,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="@string/page_two_circle_thunder"
             android:textColor="@color/how_to_play_gold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 
     <LinearLayout
@@ -86,19 +90,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="@string/page_two_circle_golden"
             android:textColor="@color/how_to_play_gold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:maxLines="2"
         android:paddingTop="10dp"
         android:text="@string/page_two_tutorial2"
         android:textColor="@color/how_to_play_gold"
         android:textSize="24sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/circle_golden_linear_layout" />

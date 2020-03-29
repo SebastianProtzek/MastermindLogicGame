@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.Math;
+package protzek.sebastian.mastermindlogicgame.math;
 
 import java.util.List;
 

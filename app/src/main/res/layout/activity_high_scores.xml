@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/options_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/explanation_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/high_scores_green"
+        android:orientation="horizontal"
+        android:padding="20sp">
+
+        <TextView
+            android:layout_width="50sp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/top"
+            android:textColor="@color/how_to_play_gold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/nickname_text_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/nickname_high_scores"
+            android:textColor="@color/how_to_play_gold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/result"
+            android:textColor="@color/how_to_play_gold"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/colorPrimary" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:itemCount="10"
+        tools:listitem="@layout/high_score" />
+</LinearLayout>

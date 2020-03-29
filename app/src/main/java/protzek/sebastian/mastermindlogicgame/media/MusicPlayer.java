@@ -1,7 +1,9 @@
-package protzek.sebastian.mastermindlogicgame;
+package protzek.sebastian.mastermindlogicgame.media;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+
+import protzek.sebastian.mastermindlogicgame.R;
 
 public class MusicPlayer {
 
@@ -18,6 +20,7 @@ public class MusicPlayer {
 
     public void getSound(Context context) {
         if (musicPlayer.getPlayer() == null) {
+            // TODO: add more soundtracks?
             musicPlayer.setPlayer(MediaPlayer.create(context, R.raw.gary_glitter_rock_roll_part_2));
             musicPlayer.getPlayer().setLooping(true);
         }

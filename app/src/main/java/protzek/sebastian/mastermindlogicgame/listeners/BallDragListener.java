@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.Listeners;
+package protzek.sebastian.mastermindlogicgame.listeners;
 
 import android.view.DragEvent;
 import android.view.View;
@@ -9,7 +9,7 @@ import android.widget.ScrollView;
 import androidx.core.widget.NestedScrollView;
 
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.SingleTurn;
+import protzek.sebastian.mastermindlogicgame.gameboard.SingleTurn;
 
 public class BallDragListener implements View.OnDragListener {
     private int indexOfActiveTurn;

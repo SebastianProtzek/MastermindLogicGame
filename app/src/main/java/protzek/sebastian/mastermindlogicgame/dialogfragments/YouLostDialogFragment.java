@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.DialogFragments;
+package protzek.sebastian.mastermindlogicgame.dialogfragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import protzek.sebastian.mastermindlogicgame.Enums.Ball;
 import protzek.sebastian.mastermindlogicgame.R;
+import protzek.sebastian.mastermindlogicgame.enums.Ball;
 
 public class YouLostDialogFragment extends AppCompatDialogFragment {
     private DialogInterface.OnClickListener listener;

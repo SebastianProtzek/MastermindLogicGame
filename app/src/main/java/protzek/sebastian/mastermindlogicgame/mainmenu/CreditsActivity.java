@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.MainMenu;
+package protzek.sebastian.mastermindlogicgame.mainmenu;
 
 import android.content.Intent;
 import android.net.Uri;

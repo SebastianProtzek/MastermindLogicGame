@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame;
+package protzek.sebastian.mastermindlogicgame.gameboard;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import protzek.sebastian.mastermindlogicgame.Listeners.BallDragListener;
-import protzek.sebastian.mastermindlogicgame.Listeners.DragListenerDataCatcher;
+import protzek.sebastian.mastermindlogicgame.R;
+import protzek.sebastian.mastermindlogicgame.listeners.BallDragListener;
+import protzek.sebastian.mastermindlogicgame.listeners.DragListenerDataCatcher;
 
 public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.GameBoardViewHolder> {
     private ArrayList<SingleTurn> game;
@@ -54,6 +55,10 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
         return game.size();
     }
 
+    void setIndexOfActiveTurn(int indexOfActiveTurn) {
+        this.indexOfActiveTurn = indexOfActiveTurn;
+    }
+
     static class GameBoardViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageViewFirstBall;
         private ImageView imageViewSecondBall;
@@ -75,9 +80,5 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
             imageViewThirdScorePin = itemView.findViewById(R.id.thirdScorePin);
             imageViewFourthScorePin = itemView.findViewById(R.id.fourthScorePin);
         }
-    }
-
-    void setIndexOfActiveTurn(int indexOfActiveTurn) {
-        this.indexOfActiveTurn = indexOfActiveTurn;
     }
 }

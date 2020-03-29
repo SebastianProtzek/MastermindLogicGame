@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.MainMenu.HowToPlay;
+package protzek.sebastian.mastermindlogicgame.mainmenu.howtoplay;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

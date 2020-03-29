@@ -1,4 +1,4 @@
-package protzek.sebastian.mastermindlogicgame.Enums;
+package protzek.sebastian.mastermindlogicgame.enums;
 
 import protzek.sebastian.mastermindlogicgame.R;
 
@@ -16,14 +16,6 @@ public enum EmptySlot {
         this.id = id;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public int getId() {
-        return id;
-    }
-
     public static EmptySlot fromId(int id) {
         EmptySlot[] values = values();
         for (EmptySlot emptySlot : values) {
@@ -31,5 +23,13 @@ public enum EmptySlot {
                 return emptySlot;
         }
         return null;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public int getId() {
+        return id;
     }
 }
