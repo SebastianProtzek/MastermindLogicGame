@@ -18,10 +18,9 @@ public class MusicPlayer {
         return musicPlayer;
     }
 
-    public void getSound(Context context) {
+    public void getMusic(Context context) {
         if (musicPlayer.getPlayer() == null) {
-            // TODO: add more soundtracks?
-            musicPlayer.setPlayer(MediaPlayer.create(context, R.raw.gary_glitter_rock_roll_part_2));
+            musicPlayer.setPlayer(MediaPlayer.create(context, R.raw.music_background_erokia_ambient_soundscape));
             musicPlayer.getPlayer().setLooping(true);
         }
         if (!musicPlayer.getPlayer().isPlaying()) {

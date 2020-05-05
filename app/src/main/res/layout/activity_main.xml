@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,89 +7,91 @@
     android:background="@drawable/background_main"
     tools:context=".mainmenu.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/ball_blue_menu"
+        android:fontFamily="@font/audiowide"
+        android:onClick="startGame"
+        android:text="@string/start"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/option_button"
+        app:layout_constraintEnd_toStartOf="@id/how_to_play_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/start_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:background="@drawable/ball_blue_menu"
-            android:onClick="startGame"
-            android:text="@string/start"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@id/option_button"
-            app:layout_constraintEnd_toStartOf="@id/how_to_play_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/how_to_play_button"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/ball_yellow_menu"
+        android:fontFamily="@font/audiowide"
+        android:onClick="openHowToPlay"
+        android:text="@string/how_to_play"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/high_scores_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/start_button"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/how_to_play_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="90dp"
-            android:background="@drawable/ball_yellow_menu"
-            android:onClick="openHowToPlay"
-            android:text="@string/how_to_play"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@id/high_scores_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/start_button"
-            app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/option_button"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/ball_white_menu"
+        android:fontFamily="@font/audiowide"
+        android:onClick="openOptions"
+        android:text="@string/options"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/credits_button"
+        app:layout_constraintEnd_toStartOf="@id/high_scores_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start_button" />
 
-        <Button
-            android:id="@+id/option_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:background="@drawable/ball_white_menu"
-            android:onClick="openOptions"
-            android:text="@string/options"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@id/credits_button"
-            app:layout_constraintEnd_toStartOf="@id/high_scores_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/start_button" />
+    <Button
+        android:id="@+id/high_scores_button"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/ball_green_menu"
+        android:fontFamily="@font/audiowide"
+        android:onClick="openHighScores"
+        android:text="@string/high_scores"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/quit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/option_button"
+        app:layout_constraintTop_toBottomOf="@id/how_to_play_button" />
 
-        <Button
-            android:id="@+id/high_scores_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:background="@drawable/ball_green_menu"
-            android:onClick="openHighScores"
-            android:text="@string/high_scores"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@id/quit_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/option_button"
-            app:layout_constraintTop_toBottomOf="@id/how_to_play_button" />
+    <Button
+        android:id="@+id/credits_button"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="90dp"
+        android:background="@drawable/ball_orange_menu"
+        android:fontFamily="@font/audiowide"
+        android:onClick="openCredits"
+        android:text="@string/credits"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/quit_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/option_button" />
 
-        <Button
-            android:id="@+id/credits_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginBottom="90dp"
-            android:background="@drawable/ball_orange_menu"
-            android:onClick="openCredits"
-            android:text="@string/credits"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/quit_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/option_button" />
+    <Button
+        android:id="@+id/quit_button"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/ball_red_menu"
+        android:fontFamily="@font/audiowide"
+        android:onClick="quitGame"
+        android:text="@string/quit"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/credits_button"
+        app:layout_constraintTop_toBottomOf="@id/high_scores_button" />
 
-        <Button
-            android:id="@+id/quit_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:background="@drawable/ball_red_menu"
-            android:onClick="quitGame"
-            android:text="@string/quit"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/credits_button"
-            app:layout_constraintTop_toBottomOf="@id/high_scores_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>

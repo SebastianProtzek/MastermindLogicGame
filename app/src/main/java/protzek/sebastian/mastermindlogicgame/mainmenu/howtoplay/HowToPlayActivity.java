@@ -1,5 +1,6 @@
 package protzek.sebastian.mastermindlogicgame.mainmenu.howtoplay;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -7,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -15,16 +17,20 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 
 import protzek.sebastian.mastermindlogicgame.R;
+import protzek.sebastian.mastermindlogicgame.mainmenu.options.Preferences;
+import protzek.sebastian.mastermindlogicgame.media.SoundBank;
+import protzek.sebastian.mastermindlogicgame.media.SoundPlayer;
 
 public class HowToPlayActivity extends AppCompatActivity {
-    ViewPager2 pager;
-    TabLayout tabLayout;
+    private SoundPlayer soundPlayer;
+    private ViewPager2 pager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        soundPlayer = new SoundPlayer(this);
         setContentView(R.layout.activity_how_to_play);
-        createList();
         pager = findViewById(R.id.pager);
         HowToPlayPagerAdapter adapter = new HowToPlayPagerAdapter(getSupportFragmentManager(), getLifecycle(), createList());
         pager.setAdapter(adapter);
@@ -60,6 +66,11 @@ public class HowToPlayActivity extends AppCompatActivity {
     }
 
     public void backToMainMenu(View view) {
+        playSound(SoundBank.PRESSED_BUTTON);
         finish();
+    }
+
+    private void playSound(int sound) {
+            soundPlayer.playSound(sound);
     }
 }

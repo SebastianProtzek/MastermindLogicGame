@@ -1,10 +1,13 @@
 package protzek.sebastian.mastermindlogicgame.dialogfragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,9 +23,9 @@ public class ExitToMainMenuDialogFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        // TODO: make a layout for it
-        builder.setTitle(R.string.go_back_to_main_menu_question)
-                .setMessage(R.string.progress_wont_be_saved)
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_exit_to_main_menu, null);
+        builder.setView(view)
                 .setPositiveButton(R.string.main_menu, listener)
                 .setNegativeButton(R.string.cancel, listener);
         return builder.create();

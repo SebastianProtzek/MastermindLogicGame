@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/main_menu_linear_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -54,10 +55,9 @@
         android:layout_marginEnd="90dp"
         android:background="@drawable/background_main_menu_button"
         android:gravity="center"
-        android:maxLines="1"
         android:onClick="backToMainMenu"
         android:padding="10dp"
-        android:text="@string/go_back_to_main_menu"
+        android:text="@string/go_back_to_main_menu_button"
         app:autoSizeTextType="uniform" />
 
 </LinearLayout>

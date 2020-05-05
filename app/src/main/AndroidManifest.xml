@@ -23,7 +23,7 @@
             android:name=".gameboard.GameBoardActivity"
             android:parentActivityName=".mainmenu.MainActivity" />
         <activity
-            android:name=".mainmenu.OptionsActivity"
+            android:name=".mainmenu.options.OptionsActivity"
             android:parentActivityName=".mainmenu.MainActivity" />
         <activity
             android:name=".mainmenu.CreditsActivity"
@@ -32,8 +32,12 @@
             android:name=".mainmenu.howtoplay.HowToPlayActivity"
             android:parentActivityName=".mainmenu.MainActivity" />
         <activity
-            android:name=".mainmenu.HighScoresActivity"
+            android:name=".mainmenu.highscores.HighScoresActivity"
             android:parentActivityName=".mainmenu.MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 

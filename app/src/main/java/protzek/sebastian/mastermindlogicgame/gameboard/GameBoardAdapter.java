@@ -11,17 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.listeners.BallDragListener;
-import protzek.sebastian.mastermindlogicgame.listeners.DragListenerDataCatcher;
+import protzek.sebastian.mastermindlogicgame.gameboard.listeners.BallDragListener;
+import protzek.sebastian.mastermindlogicgame.gameboard.listeners.BallTouchListener;
+import protzek.sebastian.mastermindlogicgame.gameboard.listeners.DragListenerDataCatcher;
+import protzek.sebastian.mastermindlogicgame.media.SoundPlayer;
 
 public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.GameBoardViewHolder> {
-    private ArrayList<SingleTurn> game;
     private DragListenerDataCatcher dldc;
+    private SoundPlayer soundPlayer;
+    private ArrayList<SingleTurn> game;
     private int indexOfActiveTurn;
 
-    GameBoardAdapter(ArrayList<SingleTurn> game, DragListenerDataCatcher dldc, int indexOfActiveTurn) {
-        this.game = game;
+    GameBoardAdapter(DragListenerDataCatcher dldc, SoundPlayer soundPlayer, ArrayList<SingleTurn> game, int indexOfActiveTurn) {
         this.dldc = dldc;
+        this.soundPlayer = soundPlayer;
+        this.game = game;
         this.indexOfActiveTurn = indexOfActiveTurn;
     }
 
@@ -35,7 +39,7 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
     @Override
     public void onBindViewHolder(@NonNull GameBoardViewHolder holder, int position) {
         SingleTurn singleTurn = game.get(position);
-        BallDragListener bdl = new BallDragListener(indexOfActiveTurn, position, dldc, singleTurn);
+        BallDragListener bdl = new BallDragListener(dldc, soundPlayer, singleTurn, indexOfActiveTurn, position);
         holder.imageViewFirstBall.setImageResource(singleTurn.getFirstBall());
         holder.imageViewSecondBall.setImageResource(singleTurn.getSecondBall());
         holder.imageViewThirdBall.setImageResource(singleTurn.getThirdBall());
@@ -59,6 +63,10 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
         this.indexOfActiveTurn = indexOfActiveTurn;
     }
 
+    ImageView getImageView(@NonNull GameBoardViewHolder holder) {
+        return holder.imageViewFirstScorePin;
+    }
+
     static class GameBoardViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageViewFirstBall;
         private ImageView imageViewSecondBall;
@@ -68,6 +76,7 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
         private ImageView imageViewSecondScorePin;
         private ImageView imageViewThirdScorePin;
         private ImageView imageViewFourthScorePin;
+
 
         GameBoardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +88,10 @@ public class GameBoardAdapter extends RecyclerView.Adapter<GameBoardAdapter.Game
             imageViewSecondScorePin = itemView.findViewById(R.id.secondScorePin);
             imageViewThirdScorePin = itemView.findViewById(R.id.thirdScorePin);
             imageViewFourthScorePin = itemView.findViewById(R.id.fourthScorePin);
+        }
+
+        public ImageView getImageViewFirstScorePin() {
+            return imageViewFirstScorePin;
         }
     }
 }

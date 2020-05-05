@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
-
+        <item name="android:fontFamily">@font/audiowide</item>
     </style>
     <!--    <style name="QuitDialog" parent="@android:style/Theme.Dialog">-->
     <!--        <item name="android:windowTitleStyle">@style/AlertDialogTitle</item>-->

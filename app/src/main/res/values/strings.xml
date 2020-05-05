@@ -9,7 +9,7 @@
     <string name="credits">Credits</string>
     <string name="quit">Quit</string>
     <string name="random_greeting">Thanks for playing my game! Don\'t forget to change your nickname in options menu. Have fun!</string>
-    <string name="personal_greeting">Hello %1$s! Not you? Change your name in option menu.</string>
+    <string name="personal_greeting">Hello %1$s! Not you? Change your name in options menu.</string>
 
     //Game board
     <string name="turns_left">Turn %1$d of %2$d</string>
@@ -21,52 +21,53 @@
     <string name="page_one_tab">Build a set</string>
     <string name="page_two_tab">Get feedback</string>
     <string name="page_three_tab">Win or lose</string>
-    <string name="page_one_tutorial">Your goal is to find \nthe correct set of balls. \n\nDrag and drop the balls \nto create a set of four. \n\nWhen you are ready \npress \'End Turn\'</string>
+    <string name="page_one_tutorial">Your goal is to find \nthe correct set of balls. \n\nDrag and drop the balls \nto create a set of four. \n\nWhen you are ready \npress \'End Turn\'.</string>
     <string name="page_two_tutorial">This symbol means one of the balls has:</string>
-    <string name="page_two_circle_fire"> - Right color and right position</string>
-    <string name="page_two_circle_thunder"> - Right color but wrong position</string>
-    <string name="page_two_circle_golden"> - Wrong color and wrong position</string>
-    <string name="page_two_tutorial2">Use information to create a new set</string>
-    <string name="page_three_tutorial">You win when all balls \nhave correct color and position</string>
-    <string name="page_three_tutorial2">You lose when there are no turns left</string>
+    <string name="page_two_circle_fire"> - Right color and right position,</string>
+    <string name="page_two_circle_thunder"> - Right color but wrong position,</string>
+    <string name="page_two_circle_golden"> - Wrong color and wrong position.</string>
+    <string name="page_two_tutorial2">Use information \nto create a new set.</string>
+    <string name="page_three_tutorial">You win, when all balls \nhave correct color and position.</string>
+    <string name="page_three_tutorial2">You lose, when there \nare no turns left.</string>
 
     //Options
     <string name="nickname_options">Nickname:</string>
     <string name="number_of_turns">Number of turns:</string>
     <string name="language">Language:</string>
     <string name="music">Music:</string>
-    <string name="go_back_to_main_menu">◄◄◄ go back to main menu</string>
+    <string name="sound">Sound:</string>
+    <string name="go_back_to_main_menu_button">◄◄◄ go back to main menu</string>
+    <string name="reset_options_warning">Press again to RESET all options</string>
+    <string name="post_reset_info" translatable="false">All options reset</string>
 
     //High Scores
     <string name="top">Top</string>
     <string name="nickname_high_scores">Nickname</string>
     <string name="result">Result</string>
+    <string name="reset_high_scores_warning">Press again to RESET all high scores</string>
+    <string name="info_high_scores">Result "Turn 4 of 9" gives 409 points. The lower the number, the higher the position.</string>
 
     //Credits
-    <string name="creator">Game created by Sebastian Protzek</string>
+    <string name="creator">Game created by \nSebastian Protzek</string>
     <string name="check_code"><u>Click here to check the code</u></string>
     <string name="have_fun">I hope you will have fun!</string>
     <string name="wanna_rate" tools:ignore="Typos">Wanna rate my game? \nLol, you can\'t xD</string>
 
-
     //Dialog Fragments
     <string name="you_won">YOU WON!</string>
+    <string name="new_record">NEW RECORD!</string>
     <string name="you_lost">YOU LOST!</string>
     <string name="the_correct_set_was">The correct set was:</string>
     <string name="do_you_want_to_play_again">Do you want to play again?</string>
     <string name="go_back_to_main_menu_question">Go back to main menu?</string>
     <string name="wanna_quit_already">Want to quit already?</string>
     <string name="are_you_sure">Are you sure?</string>
-    <string name="progress_wont_be_saved">Progress won\'t be saved</string>
+    <string name="progress_wont_be_saved">Progress won\'t be saved…</string>
     <string name="play_again">Play again</string>
     <string name="main_menu">Main menu</string>
     <string name="cancel">Cancel</string>
 
-    //Non-Translatable
-    <string name="nickname_key" translatable="false">n_key</string>
-    <string name="turns_key" translatable="false">t_key</string>
-    <string name="language_key" translatable="false">l_key</string>
-    <string name="volume_key" translatable="false">v_key</string>
+    //Descriptions
     <string name="empty_slot_description" translatable="false">an empty slot of a single turn where you can drag a chosen ball</string>
     <string name="score_pin_description" translatable="false">one of the four score pins where the result of the turn will be displayed</string>
     <string name="ball_description" translatable="false">a ball to be dragged and dropped over an empty slot</string>
@@ -74,14 +75,30 @@
     <string name="volume_icon_description" translatable="false">volume icon</string>
 
     //High Scores Placeholders
+    <string name="turns_key" translatable="false">t_key</string>
+    <string name="language_key" translatable="false">l_key</string>
+    <string name="sound_key" translatable="false">s_key</string>
+    <string name="music_key" translatable="false">m_key</string>
     <string name="player_score_key" translatable="false">ps_key</string>
-    <string name="top1_key" translatable="false">top1_key</string>
-    <string name="top2_key" translatable="false">top2_key</string>
-    <string name="top3_key" translatable="false">top3_key</string>
-    <string name="top4_key" translatable="false">top5_key</string>
-    <string name="top6_key" translatable="false">top6_key</string>
-    <string name="top7_key" translatable="false">top7_key</string>
-    <string name="top8_key" translatable="false">top8_key</string>
-    <string name="top9_key" translatable="false">top9_key</string>
-    <string name="top10_key" translatable="false">top10_key</string>
+    <string name="player_nickname_key" translatable="false">pn_key</string>
+    <string name="top1_score_key" translatable="false">top1_s_key</string>
+    <string name="top2_score_key" translatable="false">top2_s_key</string>
+    <string name="top3_score_key" translatable="false">top3_s_key</string>
+    <string name="top4_score_key" translatable="false">top5_s_key</string>
+    <string name="top6_score_key" translatable="false">top6_s_key</string>
+    <string name="top7_score_key" translatable="false">top7_s_key</string>
+    <string name="top8_score_key" translatable="false">top8_s_key</string>
+    <string name="top9_score_key" translatable="false">top9_s_key</string>
+    <string name="top10_score_key" translatable="false">top10_s_key</string>
+    <string name="top11_score_key" translatable="false">top11_s_key</string>
+    <string name="top1_nickname_key" translatable="false">top1_n_key</string>
+    <string name="top2_nickname_key" translatable="false">top2_n_key</string>
+    <string name="top3_nickname_key" translatable="false">top3_n_key</string>
+    <string name="top4_nickname_key" translatable="false">top5_n_key</string>
+    <string name="top6_nickname_key" translatable="false">top6_n_key</string>
+    <string name="top7_nickname_key" translatable="false">top7_n_key</string>
+    <string name="top8_nickname_key" translatable="false">top8_n_key</string>
+    <string name="top9_nickname_key" translatable="false">top9_n_key</string>
+    <string name="top10_nickname_key" translatable="false">top10_n_key</string>
+    <string name="top11_nickname_key" translatable="false">top11_n_key</string>
 </resources>

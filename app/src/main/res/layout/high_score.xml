@@ -12,26 +12,29 @@
         android:paddingEnd="20sp">
 
         <TextView
+            android:id="@+id/place_in_high_scores_text_view"
             android:layout_width="50sp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="1."
+            android:text=""
             android:textColor="@color/how_to_play_gold" />
 
         <TextView
             android:id="@+id/nickname_text_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="@string/nickname_options"
             android:textColor="@color/how_to_play_gold" />
 
         <TextView
+            android:id="@+id/score_text_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="4 of 8"
+            android:text=""
             android:textColor="@color/how_to_play_gold" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

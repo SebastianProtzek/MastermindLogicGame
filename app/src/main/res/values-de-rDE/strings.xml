@@ -14,33 +14,37 @@
     //Game board
     <string name="turns_left">Zug %1$d von %2$d</string>
     <string name="restart">Restart</string>
-    <string name="end_turn">Zugende</string>
+    <string name="end_turn">Beenden</string>
     <string name="exit">Menu</string>
 
     //How to Play
     <string name="page_one_tab">Bilde ein Set</string>
     <string name="page_two_tab">Analysiere</string>
     <string name="page_three_tab">Gewinne!</string>
-    <string name="page_one_tutorial">Das Ziel des Spieles ist \ndas richtige Kugelset zu finden. \n\nZiehe und lege die Kugeln ab \num dein Set zu bilden. \n\nWenn du fertig bist \ndrücke \'Zugende\'</string>
+    <string name="page_one_tutorial">Das Ziel des Spieles ist \ndas richtige Kugelset zu finden. \n\nZiehe und lege die Kugeln ab, \num dein Set zu bilden. \n\nWenn du fertig bist, \ndrücke \'Beenden\'.</string>
     <string name="page_two_tutorial">Das Symbol bedeutet, dass eine Kugel:</string>
-    <string name="page_two_circle_fire"> - richtige Farbe und richtige Position hat</string>
-    <string name="page_two_circle_thunder"> - richtige Farbe, aber falsche Position hat</string>
-    <string name="page_two_circle_golden"> - Falsche Farbe und falsche Position hat</string>
-    <string name="page_two_tutorial2">Nutze die Informationen \nbei Bildung eines neuen Sets</string>
-    <string name="page_three_tutorial">Du gewinnst, wenn alle Kugeln \nrichtige Farbe und Position haben</string>
-    <string name="page_three_tutorial2">Du verlierst, wenn keine Züge \nmehr vorhanden sind</string>
+    <string name="page_two_circle_fire"> - richtige Farbe und richtige Position hat,</string>
+    <string name="page_two_circle_thunder"> - richtige Farbe, aber falsche Position hat,</string>
+    <string name="page_two_circle_golden"> - falsche Farbe und falsche Position hat.</string>
+    <string name="page_two_tutorial2">Nutze die Informationen \nbei Bildung eines neuen Sets.</string>
+    <string name="page_three_tutorial">Du gewinnst, wenn alle Kugeln \nrichtige Farbe und Position haben.</string>
+    <string name="page_three_tutorial2">Du verlierst, wenn keine Züge \nmehr vorhanden sind.</string>
 
     //Options
     <string name="nickname_options">Spielername:</string>
     <string name="number_of_turns">Anzahl der Züge:</string>
     <string name="language">Sprache:</string>
     <string name="music">Musik:</string>
-    <string name="go_back_to_main_menu">◄◄◄ Zurück zum Hauptmenu</string>
+    <string name="sound">Ton:</string>
+    <string name="go_back_to_main_menu_button">◄◄◄ Zurück zum Hauptmenu</string>
+    <string name="reset_options_warning">Drücke erneut, um alle Einstellungen ZURÜCKZUSETZEN</string>
 
     //High Scores
     <string name="top">Top</string>
     <string name="nickname_high_scores">Spielername</string>
     <string name="result">Ergebnis</string>
+    <string name="reset_high_scores_warning">Drücke erneut, um alle High Scores ZURÜCKZUSETZEN</string>
+    <string name="info_high_scores">Resultat "Zug 4 von 9" ergibt 409 Punkte. Je weniger Punkte, desto höherer Platz.</string>
 
     //Credits
     <string name="creator">Spiel entwickelt von \nSebastian Protzek</string>
@@ -51,13 +55,14 @@
 
     //Dialog Fragments
     <string name="you_won">GEWONNEN!</string>
+    <string name="new_record">NEUER REKORD!</string>
     <string name="you_lost">VERLOREN!</string>
     <string name="the_correct_set_was">Die richtige Kombination:</string>
     <string name="do_you_want_to_play_again">Willst du nochmal spielen?</string>
     <string name="go_back_to_main_menu_question">Zurück zum Hauptmenu?</string>
     <string name="wanna_quit_already">Willst du das Spiel beenden?</string>
     <string name="are_you_sure">Bist du sicher?</string>
-    <string name="progress_wont_be_saved">Der Spielfortschritt wird nicht gespeichert</string>
+    <string name="progress_wont_be_saved">Der Spielfortschritt wird nicht gespeichert…</string>
     <string name="play_again">Neues Spiel</string>
     <string name="main_menu">Zum Hauptmenu</string>
     <string name="cancel">Abbrechen</string>

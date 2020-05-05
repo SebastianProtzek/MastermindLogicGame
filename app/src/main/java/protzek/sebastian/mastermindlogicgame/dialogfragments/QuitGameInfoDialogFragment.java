@@ -1,10 +1,14 @@
 package protzek.sebastian.mastermindlogicgame.dialogfragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +24,9 @@ public class QuitGameInfoDialogFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        builder.setTitle((getString(R.string.wanna_quit_already)))
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_quit_game, null);
+        builder.setView(view)
                 .setPositiveButton((getString(R.string.quit)), listener)
                 .setNegativeButton((R.string.cancel), listener);
         return builder.create();

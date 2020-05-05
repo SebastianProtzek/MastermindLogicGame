@@ -9,7 +9,7 @@
     <string name="credits">Twórcy</string>
     <string name="quit">Wyjście</string>
     <string name="random_greeting">Dzięki za granie w moją grę! Nie zapomnij wpisać swój nick w opcjach. Dobrej zabawy!</string>
-    <string name="personal_greeting">Cześć %1$s! To nie Ty? Wprowadź swój nick w opcjach.</string>
+    <string name="personal_greeting">Cześć %1$s! To nie Ty? Zmień swój nick w opcjach.</string>
 
     //Game board
     <string name="turns_left">Tura %1$d z %2$d</string>
@@ -21,26 +21,30 @@
     <string name="page_one_tab">Stwórz set</string>
     <string name="page_two_tab">Analizuj</string>
     <string name="page_three_tab">Wygrywaj!</string>
-    <string name="page_one_tutorial">Twoim celem jest znaleźć \nwłaściwą kombinację kul. \n\nPrzeciągnij i upuść kule \naby utrzowyć set. \n\nGdy jesteś gotowy \nwciśnij \'Koniec tury\'</string>
+    <string name="page_one_tutorial">Twoim celem jest znaleźć \nwłaściwą kombinację kul. \n\nPrzeciągnij i upuść kule, \naby utworzyć set. \n\nGdy jesteś gotowy, \nwciśnij \'Koniec tury\'.</string>
     <string name="page_two_tutorial">Ten symbol oznacza, że jedna z kul ma:</string>
-    <string name="page_two_circle_fire"> - właściwy kolor i właściwą pozycję</string>
-    <string name="page_two_circle_thunder"> - właściwy kolor, ale złą pozycję</string>
-    <string name="page_two_circle_golden"> - zły kolor i złą pozycję</string>
-    <string name="page_two_tutorial2">Użyj informacji by stworzyć nowy set</string>
-    <string name="page_three_tutorial">Wygrywasz, gdy wszystkie kule \nmają właściwy kolor i pozycję</string>
-    <string name="page_three_tutorial2">Przegrywasz, gdy skończą Ci się tury</string>
+    <string name="page_two_circle_fire"> - właściwy kolor i właściwą pozycję,</string>
+    <string name="page_two_circle_thunder"> - właściwy kolor, ale złą pozycję,</string>
+    <string name="page_two_circle_golden"> - zły kolor i złą pozycję.</string>
+    <string name="page_two_tutorial2">Użyj informacji, by \nstworzyć nowy set.</string>
+    <string name="page_three_tutorial">Wygrywasz, gdy wszystkie kule \nmają właściwy kolor i pozycję.</string>
+    <string name="page_three_tutorial2">Przegrywasz, gdy \nskończą Ci się tury.</string>
 
     //Options
     <string name="nickname_options">Imię gracza:</string>
     <string name="number_of_turns">Liczba tur:</string>
     <string name="language">Język:</string>
     <string name="music">Muzyka:</string>
-    <string name="go_back_to_main_menu">◄◄ Wróć do menu głównego</string>
+    <string name="sound">Dźwięk:</string>
+    <string name="go_back_to_main_menu_button">◄◄ Wróć do menu głównego</string>
+    <string name="reset_options_warning">Wciśnij ponownie, aby ZRESETOWAĆ wszystkie opcje</string>
 
     //High Scores
     <string name="top">Top</string>
     <string name="nickname_high_scores">Imię gracza</string>
     <string name="result">Wynik</string>
+    <string name="reset_high_scores_warning">Wciśnij ponownie, aby ZRESETOWAĆ tabelę rekordów</string>
+    <string name="info_high_scores">Wynik "Tura 4 z 9" daje 409 punktów. Im mniej punktów, tym wyższa pozycja w tabeli</string>
 
     //Credits
     <string name="creator">Gra stworzona przez \nSebastiana Protzek</string>
@@ -51,13 +55,14 @@
 
     //Dialog Fragments
     <string name="you_won">ZWYCIĘSTWO!</string>
+    <string name="new_record">NOWY REKORD!</string>
     <string name="you_lost">PRZEGRANA!</string>
     <string name="the_correct_set_was">Poprawne rozwiązanie:</string>
     <string name="do_you_want_to_play_again">Chcesz zagrać ponownie?</string>
     <string name="go_back_to_main_menu_question">Wrócić do menu głównego?</string>
     <string name="wanna_quit_already">Na pewno chcesz wyjść?</string>
     <string name="are_you_sure">Opuścić rozgrywkę?</string>
-    <string name="progress_wont_be_saved">Postęp nie zostanie zapisany</string>
+    <string name="progress_wont_be_saved">Postęp nie zostanie zapisany…</string>
     <string name="play_again">Zagraj ponownie</string>
     <string name="main_menu">Menu główne</string>
     <string name="cancel">Anuluj</string>

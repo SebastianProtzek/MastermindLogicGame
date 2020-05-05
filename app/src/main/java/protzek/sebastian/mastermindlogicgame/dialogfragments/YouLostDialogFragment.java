@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.enums.Ball;
+import protzek.sebastian.mastermindlogicgame.gameboard.enums.Ball;
 
 public class YouLostDialogFragment extends AppCompatDialogFragment {
     private DialogInterface.OnClickListener listener;
@@ -32,7 +32,7 @@ public class YouLostDialogFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_you_lost, null);
         builder.setView(view)
                 .setPositiveButton(R.string.restart, listener)

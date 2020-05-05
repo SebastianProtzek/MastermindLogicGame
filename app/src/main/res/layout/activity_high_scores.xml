@@ -1,57 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/high_scores_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/options_white"
-    android:orientation="vertical">
+    android:background="@color/options_white">
 
     <LinearLayout
-        android:id="@+id/explanation_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/high_scores_green"
-        android:orientation="horizontal"
-        android:padding="20sp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="50sp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/top"
-            android:textColor="@color/how_to_play_gold"
-            android:textSize="20sp" />
+        <LinearLayout
+            android:id="@+id/explanation_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/high_scores_green"
+            android:orientation="horizontal"
+            android:padding="20sp">
 
-        <TextView
-            android:id="@+id/nickname_text_view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="@string/nickname_high_scores"
-            android:textColor="@color/how_to_play_gold"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="50sp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/top"
+                android:textColor="@color/how_to_play_gold"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/result"
-            android:textColor="@color/how_to_play_gold"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/nickname_text_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/nickname_high_scores"
+                android:textColor="@color/how_to_play_gold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/result"
+                android:textColor="@color/how_to_play_gold"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/high_scores_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="10"
+            tools:listitem="@layout/high_score" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/test"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/colorPrimary" />
+        android:layout_gravity="start|bottom"
+        android:layout_margin="15dp"
+        android:backgroundTint="@color/quit_red"
+        android:onClick="info"
+        android:src="@drawable/ic_info_high_scores"
+        app:backgroundTint="@color/quit_red" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/background_main_menu_button"
+        android:gravity="center"
+        android:onClick="backToMainMenu"
+        android:padding="10dp"
+        android:text="@string/go_back_to_main_menu_button"
+        app:autoSizeTextType="uniform" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:itemCount="10"
-        tools:listitem="@layout/high_score" />
-</LinearLayout>
+        android:layout_gravity="end|bottom"
+        android:layout_margin="15dp"
+        android:backgroundTint="@color/quit_red"
+        android:onClick="resetHighScores"
+        android:src="@drawable/ic_reset_options"
+        app:backgroundTint="@color/quit_red" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

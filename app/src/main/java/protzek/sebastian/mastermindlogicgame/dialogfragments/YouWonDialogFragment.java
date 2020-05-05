@@ -8,28 +8,35 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import java.util.Objects;
-
 import protzek.sebastian.mastermindlogicgame.R;
 
 public class YouWonDialogFragment extends AppCompatDialogFragment {
     private DialogInterface.OnClickListener listener;
+    private boolean newRecord;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
-        LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_you_won, null);
-        // TODO: add "new record" invisible text view
         builder.setView(view)
                 .setPositiveButton(R.string.play_again, listener)
                 .setNegativeButton(R.string.main_menu, listener);
+
+        TextView winMessageTextView = view.findViewById(R.id.win_message_text_view);
+
+        if (newRecord) {
+            winMessageTextView.setText(getString(R.string.new_record));
+            winMessageTextView.setTextColor(getResources().getColor(R.color.gold));
+        }
+
         return builder.create();
     }
 
@@ -47,5 +54,9 @@ public class YouWonDialogFragment extends AppCompatDialogFragment {
     public void onDetach() {
         super.onDetach();
         listener = null;
+    }
+
+    public void setNewRecord(boolean newRecord) {
+        this.newRecord = newRecord;
     }
 }
