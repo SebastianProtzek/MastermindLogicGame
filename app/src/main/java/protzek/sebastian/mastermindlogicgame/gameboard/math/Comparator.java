@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Comparator {
-    public ArrayList<Integer> compareNumbers(ArrayList<Integer> master, ArrayList<Integer> player) {
+    public ArrayList<Integer> compareSets(ArrayList<Integer> master, ArrayList<Integer> player) {
         int counterRightPosition = 0;
         for (int i = 0; i < master.size(); i++) {
             if (master.get(i).equals(player.get(i))) {

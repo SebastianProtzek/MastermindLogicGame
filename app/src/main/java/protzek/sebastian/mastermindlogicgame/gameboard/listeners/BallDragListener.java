@@ -1,6 +1,5 @@
 package protzek.sebastian.mastermindlogicgame.gameboard.listeners;
 
-import android.media.Image;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +14,7 @@ import protzek.sebastian.mastermindlogicgame.media.SoundBank;
 import protzek.sebastian.mastermindlogicgame.media.SoundPlayer;
 
 public class BallDragListener implements View.OnDragListener {
+    private CheckIfButtonController controller;
     private DragListenerDataCatcher dldc;
     private SoundPlayer soundPlayer;
     private SingleTurn singleTurn;
@@ -28,6 +28,8 @@ public class BallDragListener implements View.OnDragListener {
         this.singleTurn = singleTurn;
         this.indexOfActiveTurn = indexOfActiveTurn;
         this.position = position;
+
+        controller = new CheckIfButtonController(dldc);
     }
 
     @Override
@@ -48,7 +50,7 @@ public class BallDragListener implements View.OnDragListener {
                     break;
                 case DragEvent.ACTION_DROP:
                     dldc.actionDrop(draggedView, dropView, singleTurn);
-                    dldc.checkIfEndTurnPossible(restartEndTurnButton);
+                    controller.checkIfEndTurnPossible(restartEndTurnButton);
                     scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                     soundPlayer.playSound(SoundBank.DROP_BALL);
                     break;

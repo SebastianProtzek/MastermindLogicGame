@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.mainmenu.options.Preferences;
+import protzek.sebastian.mastermindlogicgame.mainmenu.options.Default;
 
 public class SoundPlayer {
     private SoundPool soundPool;
@@ -30,7 +30,7 @@ public class SoundPlayer {
                 .build();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        soundOn = prefs.getBoolean(context.getResources().getString(R.string.sound_key), Preferences.VOLUME_DEFAULT);
+        soundOn = prefs.getBoolean(context.getResources().getString(R.string.sound_key), Default.VOLUME);
 
         int sound1 = soundPool.load(context, R.raw.pressed_button, 1);
         int sound2 = soundPool.load(context, R.raw.are_you_sure, 1);

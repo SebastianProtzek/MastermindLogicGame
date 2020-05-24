@@ -39,7 +39,7 @@ public class HighScoresAdapter extends RecyclerView.Adapter<HighScoresAdapter.Hi
         return highScores.size();
     }
 
-    static class HighScoresViewHolder extends RecyclerView.ViewHolder{
+    static class HighScoresViewHolder extends RecyclerView.ViewHolder {
         private TextView placeInHighScoresTextView;
         private TextView nicknameTextView;
         private TextView scoreTextView;

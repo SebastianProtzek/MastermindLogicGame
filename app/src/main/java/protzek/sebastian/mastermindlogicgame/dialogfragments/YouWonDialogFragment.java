@@ -1,6 +1,5 @@
 package protzek.sebastian.mastermindlogicgame.dialogfragments;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -8,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,7 +25,8 @@ public class YouWonDialogFragment extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_you_won, null);
+        final ViewGroup nullParent = null;
+        View view = inflater.inflate(R.layout.fragment_you_won, nullParent);
         builder.setView(view)
                 .setPositiveButton(R.string.play_again, listener)
                 .setNegativeButton(R.string.main_menu, listener);

@@ -44,7 +44,7 @@
     <string name="nickname_high_scores">Imię gracza</string>
     <string name="result">Wynik</string>
     <string name="reset_high_scores_warning">Wciśnij ponownie, aby ZRESETOWAĆ tabelę rekordów</string>
-    <string name="info_high_scores">Wynik "Tura 4 z 9" daje 409 punktów. Im mniej punktów, tym wyższa pozycja w tabeli</string>
+    <string name="info_high_scores">Wynik \"Tura 4 z 9\" daje 409 punktów. Im mniej punktów, tym wyższa pozycja w tabeli</string>
 
     //Credits
     <string name="creator">Gra stworzona przez \nSebastiana Protzek</string>

@@ -45,7 +45,7 @@
     <string name="nickname_high_scores">Nickname</string>
     <string name="result">Result</string>
     <string name="reset_high_scores_warning">Press again to RESET all high scores</string>
-    <string name="info_high_scores">Result "Turn 4 of 9" gives 409 points. The lower the number, the higher the position.</string>
+    <string name="info_high_scores">Result \"Turn 4 of 9\" gives 409 points. The lower the number, the higher the position.</string>
 
     //Credits
     <string name="creator">Game created by \nSebastian Protzek</string>

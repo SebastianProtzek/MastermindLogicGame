@@ -5,13 +5,12 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:id="@+id/quit_game_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
-        android:textSize="24sp"
-        android:text="@string/wanna_quit_already" />
+        android:text="@string/wanna_quit_already"
+        android:textSize="24sp" />
 
 </LinearLayout>

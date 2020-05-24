@@ -48,7 +48,7 @@
             android:maxLines="1"
             android:text="@string/page_two_circle_fire"
             android:textColor="@color/how_to_play_gold"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:autoSizeTextType="uniform" />
     </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:maxLines="1"
             android:text="@string/page_two_circle_thunder"
             android:textColor="@color/how_to_play_gold"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:autoSizeTextType="uniform" />
     </LinearLayout>
 
@@ -98,7 +98,7 @@
             android:maxLines="1"
             android:text="@string/page_two_circle_golden"
             android:textColor="@color/how_to_play_gold"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:autoSizeTextType="uniform" />
     </LinearLayout>
 

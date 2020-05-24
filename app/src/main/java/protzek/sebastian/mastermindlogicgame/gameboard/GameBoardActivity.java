@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,69 +18,48 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.dialogfragments.ExitToMainMenuDialogFragment;
-import protzek.sebastian.mastermindlogicgame.dialogfragments.RestartGameDialogFragment;
-import protzek.sebastian.mastermindlogicgame.dialogfragments.YouLostDialogFragment;
-import protzek.sebastian.mastermindlogicgame.dialogfragments.YouWonDialogFragment;
+import protzek.sebastian.mastermindlogicgame.dialogfragments.DialogFragmentCreator;
 import protzek.sebastian.mastermindlogicgame.gameboard.listeners.BallTouchListener;
-import protzek.sebastian.mastermindlogicgame.gameboard.listeners.DragListenerDataCatcher;
 import protzek.sebastian.mastermindlogicgame.mainmenu.highscores.HighScoresListBuilder;
-import protzek.sebastian.mastermindlogicgame.mainmenu.options.Preferences;
-import protzek.sebastian.mastermindlogicgame.gameboard.math.Comparator;
-import protzek.sebastian.mastermindlogicgame.gameboard.math.NumbersGenerator;
-import protzek.sebastian.mastermindlogicgame.gameboard.math.WonOrNot;
-import protzek.sebastian.mastermindlogicgame.media.Animations;
-import protzek.sebastian.mastermindlogicgame.media.SoundBank;
-import protzek.sebastian.mastermindlogicgame.media.SoundPlayer;
+import protzek.sebastian.mastermindlogicgame.mainmenu.options.Default;
+import protzek.sebastian.mastermindlogicgame.media.*;
 
 public class GameBoardActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
-    private GameBoardAdapter adapter;
+    private Animations anim = new Animations();
     private SharedPreferences prefs;
-    private HighScoresListBuilder hslb;
+    private GameBoardActivityHelper helper;
+    private HighScoresListBuilder highScoresBuilder;
+    private DialogFragmentCreator fragmentCreator;
     private SoundPlayer soundPlayer;
     private Button restartEndTurnButton;
     private TextView turnsTextView;
-    private ArrayList<Integer> masterNumbers;
-    private ArrayList<SingleTurn> game;
-
     private String turnsLeftAsString;
-    private int dialogSwitch, numberOfTurns, turnsLeft, indexOfActiveTurn;
-    private boolean didPlayerWin;
-
-    private Animations anim = new Animations();
-    private DragListenerDataCatcher dldc = new DragListenerDataCatcher();
-    private NumbersGenerator ng = new NumbersGenerator();
-    private Comparator com = new Comparator();
-    private WonOrNot won = new WonOrNot();
+    private int numberOfTurns;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        // TODO: create view model/subclass for it?
-        // TODO: any animations more?
         super.onCreate(savedInstanceState);
         soundPlayer = new SoundPlayer(this);
         setContentView(R.layout.activity_game_board);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        helper = new GameBoardActivityHelper(soundPlayer);
+        highScoresBuilder = new HighScoresListBuilder(this, prefs);
+        fragmentCreator = new DialogFragmentCreator(this);
         restartEndTurnButton = findViewById(R.id.restart_end_turn_button);
         turnsTextView = findViewById(R.id.turns_text_view);
         RecyclerView recyclerView = findViewById(R.id.game_board_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(helper.getAdapter());
         invokeAllBallListeners();
 
-        masterNumbers = ng.getMasterNumbers();
-        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        hslb = new HighScoresListBuilder(this, prefs);
-        indexOfActiveTurn = 0;
         numberOfTurns = prefs.getInt(getString(R.string.turns_key), 10);
-        turnsLeft = numberOfTurns;
-        turnsLeftAsString = String.format(getString(R.string.turns_left), (indexOfActiveTurn + 1), numberOfTurns);
+        helper.setTurnsLeft(numberOfTurns);
+        turnsLeftAsString = String.format(getString(R.string.turns_left), (helper.getIndexOfActiveTurn() + 1), numberOfTurns);
         turnsTextView.setText(turnsLeftAsString);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        game = new ArrayList<>();
-        adapter = new GameBoardAdapter(dldc, soundPlayer, game, indexOfActiveTurn);
-        recyclerView.setAdapter(adapter);
-        View view = recyclerView.getChildAt(0);
+        helper.getController().checkIfPlayerPressedStart(restartEndTurnButton, anim);
     }
 
     public void reStartOrEndTurn(View view) {
@@ -96,9 +73,9 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
                 break;
             default:
                 endTurn();
-                if (didPlayerWin) {
+                if (helper.isPlayerWon()) {
                     youWon();
-                } else if (turnsLeft > 0) {
+                } else if (helper.getTurnsLeft() > 0) {
                     prepareNextTurn();
                 } else {
                     youLost();
@@ -108,91 +85,44 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
     }
 
     private void startGame() {
-        createNextTurn(game);
-        adapter.notifyItemChanged(game.size());
+        helper.createNextTurn();
         restartEndTurnButton.setText(R.string.restart);
         playSound(SoundBank.START_GAME);
     }
 
     private void restartGame() {
-        dialogSwitch = 1;
-        RestartGameDialogFragment restartGameDialogFragment = new RestartGameDialogFragment();
-        restartGameDialogFragment.show(getSupportFragmentManager(), null);
+        fragmentCreator.showRestartGameDialogFragment();
     }
 
     private void endTurn() {
-        turnsLeft--;
-        ArrayList<Integer> playerGuess = dldc.getPlayerNumbers();
-        ArrayList<Integer> guessResult = com.compareNumbers(masterNumbers, playerGuess);
-        didPlayerWin = won.checkIfWon(guessResult);
-        SingleTurn updatedActiveTurn = showResult(guessResult, game.get(indexOfActiveTurn));
-        game.set(indexOfActiveTurn, updatedActiveTurn);
-        adapter.notifyDataSetChanged();
+        helper.endTurn();
     }
 
     private void youWon() {
-        dialogSwitch = 3;
-        YouWonDialogFragment youWonDialogFragment = new YouWonDialogFragment();
-        youWonDialogFragment.setNewRecord(isNewRecord());
-        youWonDialogFragment.show(getSupportFragmentManager(), null);
+        fragmentCreator.showYouWonDialogFragment(isNewRecord());
+        helper.getDataCatcher().resetPlayerSet();
         restartEndTurnButton.setText(R.string.restart);
-        hslb.updateHighScores();
+        highScoresBuilder.updateHighScores();
         playSound(SoundBank.YOU_WON);
     }
 
     private void prepareNextTurn() {
-        ng.resetDefaultNumbers();
-        dldc.resetPlayerNumbers();
+        helper.prepareNextTurn();
         restartEndTurnButton.setText(R.string.restart);
         int color = ContextCompat.getColor(restartEndTurnButton.getContext(), R.color.gold);
         restartEndTurnButton.setTextColor(color);
-        createNextTurn(game);
-        indexOfActiveTurn = game.size() - 1;
-        turnsLeftAsString = String.format(getString(R.string.turns_left), (indexOfActiveTurn + 1), numberOfTurns);
+        turnsLeftAsString = String.format(getString(R.string.turns_left), (helper.getIndexOfActiveTurn() + 1), numberOfTurns);
         turnsTextView.setText(turnsLeftAsString);
-        anim.blink(turnsTextView);
-        adapter.setIndexOfActiveTurn(indexOfActiveTurn);
         scrollView();
+        anim.blink(turnsTextView);
         playSound(SoundBank.NEXT_TURN);
     }
 
     private void youLost() {
-        ng.resetDefaultNumbers();
-        dialogSwitch = 3;
-        YouLostDialogFragment youLostDialogFragment = new YouLostDialogFragment(masterNumbers);
-        youLostDialogFragment.show(getSupportFragmentManager(), null);
+        helper.getGenerator().resetMasterSet();
+        fragmentCreator.showYouLostDialogFragment(helper.getGenerator().getMasterSet());
         restartEndTurnButton.setText(R.string.restart);
         playSound(SoundBank.YOU_LOST);
-    }
-
-    private SingleTurn showResult(ArrayList<Integer> guessResult, SingleTurn currentTurn) {
-        int counterRightPosition = guessResult.get(0);
-        int counterRightNumber = guessResult.get(1);
-        ArrayList<Integer> scorePins = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            if (counterRightPosition > 0) {
-                scorePins.add(R.drawable.empty_circle_fire);
-                counterRightPosition--;
-            } else if (counterRightNumber > 0) {
-                scorePins.add(R.drawable.empty_circle_thunder);
-                counterRightNumber--;
-            } else {
-                scorePins.add(R.drawable.empty_circle_golden);
-            }
-        }
-        adapter.getItemId(indexOfActiveTurn);
-        currentTurn.setFirstScorePin(scorePins.get(0));
-        currentTurn.setSecondScorePin(scorePins.get(1));
-        currentTurn.setThirdScorePin(scorePins.get(2));
-        currentTurn.setFourthScorePin(scorePins.get(3));
-        return currentTurn;
-    }
-
-    private void createNextTurn(ArrayList<SingleTurn> list) {
-        final int ECG = R.drawable.empty_circle_golden;
-        SingleTurn nextTurn = new SingleTurn(
-                ECG, ECG, ECG, ECG, ECG, ECG, ECG, ECG);
-        list.add((nextTurn));
     }
 
     private void scrollView() {
@@ -206,28 +136,25 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
     }
 
     private boolean isNewRecord() {
-        int record = prefs.getInt(getString(R.string.top1_score_key), Preferences.SCORE_DEFAULT);
-        int playerScore = (indexOfActiveTurn + 1) * 100 + numberOfTurns;
+        int record = prefs.getInt(getString(R.string.top1_score_key), Default.SCORE);
+        int playerScore = (helper.getIndexOfActiveTurn() + 1) * 100 + numberOfTurns;
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt(getString(R.string.player_score_key), playerScore);
         editor.apply();
-
         return playerScore < record;
     }
 
     public void backToMainMenu(View view) {
-        dialogSwitch = 2;
-        ExitToMainMenuDialogFragment dialogFragment = new ExitToMainMenuDialogFragment();
-        dialogFragment.show(getSupportFragmentManager(), null);
+        fragmentCreator.showExitToMainMenuDialogFragment();
         playSound(SoundBank.ARE_YOU_SURE);
     }
 
     private void playSound(int sound) {
-            soundPlayer.playSound(sound);
+        soundPlayer.playSound(sound);
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void invokeAllBallListeners() {
+    public void invokeAllBallListeners() {
         ImageView blueBallImageView = findViewById(R.id.blue_ball_image_view);
         ImageView yellowBallImageView = findViewById(R.id.yellow_ball_image_view);
         ImageView redBallImageView = findViewById(R.id.red_ball_image_view);
@@ -236,27 +163,27 @@ public class GameBoardActivity extends AppCompatActivity implements DialogInterf
         ImageView whiteBallImageView = findViewById(R.id.white_ball_image_view);
 
         BallTouchListener btl = new BallTouchListener();
-        blueBallImageView.setOnTouchListener(btl);
-        yellowBallImageView.setOnTouchListener(btl);
-        redBallImageView.setOnTouchListener(btl);
-        greenBallImageView.setOnTouchListener(btl);
-        orangeBallImageView.setOnTouchListener(btl);
-        whiteBallImageView.setOnTouchListener(btl);
+        ArrayList<ImageView> balls = new ArrayList<>(Arrays.asList(blueBallImageView, yellowBallImageView,
+                redBallImageView, greenBallImageView, orangeBallImageView, whiteBallImageView));
+        for (ImageView imageView : balls) {
+            imageView.setOnTouchListener(btl);
+        }
     }
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
+        int dialogSwitch = fragmentCreator.getDialogSwitch();
         switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
                 playSound(SoundBank.PRESSED_BUTTON);
                 finish();
-                if (dialogSwitch == 1 || dialogSwitch == 3) {
+                if (dialogSwitch == 1 || dialogSwitch == 2) {
                     startActivity(getIntent());
                 }
                 break;
             case DialogInterface.BUTTON_NEGATIVE:
                 playSound(SoundBank.PRESSED_BUTTON);
-                if (dialogSwitch == 3)
+                if (dialogSwitch == 2)
                     finish();
                 break;
         }

@@ -44,7 +44,7 @@
     <string name="nickname_high_scores">Spielername</string>
     <string name="result">Ergebnis</string>
     <string name="reset_high_scores_warning">Drücke erneut, um alle High Scores ZURÜCKZUSETZEN</string>
-    <string name="info_high_scores">Resultat "Zug 4 von 9" ergibt 409 Punkte. Je weniger Punkte, desto höherer Platz.</string>
+    <string name="info_high_scores">Resultat \"Zug 4 von 9\" ergibt 409 Punkte. Je weniger Punkte, desto höherer Platz.</string>
 
     //Credits
     <string name="creator">Spiel entwickelt von \nSebastian Protzek</string>

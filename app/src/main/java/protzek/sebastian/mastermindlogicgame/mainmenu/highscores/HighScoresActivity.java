@@ -17,7 +17,6 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.mainmenu.options.Preferences;
 import protzek.sebastian.mastermindlogicgame.media.SoundBank;
 import protzek.sebastian.mastermindlogicgame.media.SoundPlayer;
 
@@ -72,6 +71,6 @@ public class HighScoresActivity extends AppCompatActivity {
     }
 
     private void playSound(int sound) {
-            soundPlayer.playSound(sound);
+        soundPlayer.playSound(sound);
     }
 }

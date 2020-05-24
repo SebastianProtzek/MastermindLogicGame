@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import protzek.sebastian.mastermindlogicgame.R;
 import protzek.sebastian.mastermindlogicgame.gameboard.listeners.BallDragListener;
-import protzek.sebastian.mastermindlogicgame.gameboard.listeners.BallTouchListener;
 import protzek.sebastian.mastermindlogicgame.gameboard.listeners.DragListenerDataCatcher;
 import protzek.sebastian.mastermindlogicgame.media.SoundPlayer;
 

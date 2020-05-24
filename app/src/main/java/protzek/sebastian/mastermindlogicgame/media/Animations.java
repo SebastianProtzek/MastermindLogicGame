@@ -10,9 +10,9 @@ import androidx.core.content.ContextCompat;
 import protzek.sebastian.mastermindlogicgame.R;
 
 public class Animations {
-    public void zoomIn(final View view) {
-        final ValueAnimator anim = ValueAnimator.ofFloat(1f, 12f);
-        anim.setDuration(700);
+    public void zoomIn(final View view, float zoomMultiplier) {
+        final ValueAnimator anim = ValueAnimator.ofFloat(1f, zoomMultiplier);
+        anim.setDuration(500);
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

@@ -1,22 +1,21 @@
 package protzek.sebastian.mastermindlogicgame.gameboard.listeners;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
-import protzek.sebastian.mastermindlogicgame.R;
+import protzek.sebastian.mastermindlogicgame.gameboard.SingleTurn;
 import protzek.sebastian.mastermindlogicgame.gameboard.enums.Ball;
 import protzek.sebastian.mastermindlogicgame.gameboard.enums.EmptySlot;
-import protzek.sebastian.mastermindlogicgame.gameboard.SingleTurn;
+import protzek.sebastian.mastermindlogicgame.media.Animations;
 
 public class DragListenerDataCatcher {
-
-    private ArrayList<Integer> playerNumbers = new ArrayList<>();
+    private Animations anim = new Animations();
+    private ArrayList<Integer> playerSet = new ArrayList<>();
 
     void actionDrop(View draggedView, View dropView, SingleTurn singleTurn) {
 
@@ -27,7 +26,7 @@ public class DragListenerDataCatcher {
         imgDrop.setImageResource(draggedBall);
         EmptySlot emptySlot = EmptySlot.fromId(dropView.getId());
 
-        playerNumbers.set(Objects.requireNonNull(emptySlot).getIndex(), numberOfBallColor);
+        playerSet.set(Objects.requireNonNull(emptySlot).getIndex(), numberOfBallColor);
 
         switch (emptySlot.getIndex()) {
             case 0:
@@ -46,30 +45,19 @@ public class DragListenerDataCatcher {
     }
 
     void addEmptySlots() {
-        if (playerNumbers.size() == 0)
+        if (playerSet.size() == 0)
             for (int i = 0; i < 4; i++) {
-                playerNumbers.add(0);
+                playerSet.add(0);
             }
     }
 
-    void checkIfEndTurnPossible(Button endTurnButton) {
-        if (playerNumbers.get(0) != 0
-                && playerNumbers.get(1) != 0
-                && playerNumbers.get(2) != 0
-                && playerNumbers.get(3) != 0) {
-            endTurnButton.setText(R.string.end_turn);
-            int color = ContextCompat.getColor(endTurnButton.getContext(), R.color.start_blue);
-            endTurnButton.setTextColor(color);
-        }
-    }
-
-    public ArrayList<Integer> getPlayerNumbers() {
-        return playerNumbers;
-    }
-
-    public void resetPlayerNumbers() {
+    public void resetPlayerSet() {
         for (int i = 0; i < 4; i++) {
-            playerNumbers.set(i, 0);
+            playerSet.set(i, 0);
         }
+    }
+
+    public ArrayList<Integer> getPlayerSet() {
+        return playerSet;
     }
 }

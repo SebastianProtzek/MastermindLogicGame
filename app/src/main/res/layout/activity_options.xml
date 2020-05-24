@@ -34,10 +34,10 @@
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:autofillHints="your nickname"
-                android:maxLength="20"
                 android:gravity="end"
                 android:hint="@string/nickname_options"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxLength="20" />
         </LinearLayout>
 
         <LinearLayout
@@ -178,10 +178,10 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
         android:layout_margin="15sp"
         android:backgroundTint="@color/quit_red"
         android:onClick="resetOptions"
         android:src="@drawable/ic_reset_options"
-        app:backgroundTint="@color/quit_red"
-        android:layout_gravity="end|bottom"/>
+        app:backgroundTint="@color/quit_red" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

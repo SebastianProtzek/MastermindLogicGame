@@ -5,7 +5,7 @@
     android:id="@+id/high_scores_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/options_white">
+    android:background="@color/high_scores_green">
 
     <LinearLayout
         android:layout_width="match_parent"

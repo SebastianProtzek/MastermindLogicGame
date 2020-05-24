@@ -1,6 +1,5 @@
 package protzek.sebastian.mastermindlogicgame.dialogfragments;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -8,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -22,10 +22,10 @@ import protzek.sebastian.mastermindlogicgame.gameboard.enums.Ball;
 
 public class YouLostDialogFragment extends AppCompatDialogFragment {
     private DialogInterface.OnClickListener listener;
-    private ArrayList<Integer> masterNumbers;
+    private ArrayList<Integer> masterSet;
 
-    public YouLostDialogFragment(ArrayList<Integer> masterNumbers) {
-        this.masterNumbers = masterNumbers;
+    public YouLostDialogFragment(ArrayList<Integer> masterSet) {
+        this.masterSet = masterSet;
     }
 
     @NonNull
@@ -33,7 +33,8 @@ public class YouLostDialogFragment extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), AlertDialog.THEME_HOLO_DARK);
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_you_lost, null);
+        final ViewGroup nullParent = null;
+        View view = inflater.inflate(R.layout.fragment_you_lost, nullParent);
         builder.setView(view)
                 .setPositiveButton(R.string.restart, listener)
                 .setNegativeButton(R.string.main_menu, listener);
@@ -43,10 +44,10 @@ public class YouLostDialogFragment extends AppCompatDialogFragment {
         ImageView thirdCorrectBallImageView = view.findViewById(R.id.third_correct_ball_image_view);
         ImageView fourthCorrectBallImageView = view.findViewById(R.id.fourth_correct_ball_image_view);
 
-        Ball firstBall = Ball.fromBallNumber(masterNumbers.get(0));
-        Ball secondBall = Ball.fromBallNumber(masterNumbers.get(1));
-        Ball thirdBall = Ball.fromBallNumber(masterNumbers.get(2));
-        Ball fourthBall = Ball.fromBallNumber(masterNumbers.get(3));
+        Ball firstBall = Ball.fromBallNumber(masterSet.get(0));
+        Ball secondBall = Ball.fromBallNumber(masterSet.get(1));
+        Ball thirdBall = Ball.fromBallNumber(masterSet.get(2));
+        Ball fourthBall = Ball.fromBallNumber(masterSet.get(3));
 
         firstCorrectBallImageView.setImageResource(Objects.requireNonNull(firstBall).getImageResource());
         secondCorrectBallImageView.setImageResource(Objects.requireNonNull(secondBall).getImageResource());

@@ -28,6 +28,13 @@ public class MusicPlayer {
         }
     }
 
+    public void stopMusic() {
+        if (musicPlayer.getPlayer() != null) {
+            musicPlayer.getPlayer().stop();
+            musicPlayer.getPlayer().release();
+        }
+    }
+
     public MediaPlayer getPlayer() {
         return player;
     }

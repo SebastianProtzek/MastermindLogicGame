@@ -1,6 +1,5 @@
 package protzek.sebastian.mastermindlogicgame.mainmenu.howtoplay;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -17,7 +15,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 
 import protzek.sebastian.mastermindlogicgame.R;
-import protzek.sebastian.mastermindlogicgame.mainmenu.options.Preferences;
 import protzek.sebastian.mastermindlogicgame.media.SoundBank;
 import protzek.sebastian.mastermindlogicgame.media.SoundPlayer;
 
@@ -71,6 +68,6 @@ public class HowToPlayActivity extends AppCompatActivity {
     }
 
     private void playSound(int sound) {
-            soundPlayer.playSound(sound);
+        soundPlayer.playSound(sound);
     }
 }
